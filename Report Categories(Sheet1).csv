@@ -1,0 +1,162 @@
+﻿id,New_Categories,New Report Name,short_description,long_description
+346,AccountManagement,Permits By Date,Permits By Date,Permits By Date - includes permits and associated data for a selected date range
+328,AccountManagement,Totalizer Report,SCVWD Totalizer Report,Accounts by Totalizer and Well
+368,AccountManagement,Skipped Tax Worksheet,Customers who should have submitted a tax worksheet but haven't.,Customers who should have submitted a tax worksheet but haven't.
+338,AccountManagement,Service Calls,Service Calls by Parcel,Service Calls by Parcel
+250,AccountManagement,Past Due Customers,Customers who are more than the given number of days past due.,Shows a list of customers who are more than the given number of days past due. Includes active and inactive customers.
+321,AccountManagement,Billing Types,Billing Types,Billing Types and their associated accounts
+381,AccountManagement,Third Party Print Customers,Third Party Print Customers,Third Party Print Customers
+419,AccountManagement,Broadcast Notifications as a Service,Provides customer list CSV used for Broadcast Notifications as a Service,"Before running this report, you must generate the relevant customer list from the Late Charges screen for the desired late charge template. This report will return a CSV file of the most recently-generated customer list for the selected template, which can then be loaded to Intermedia to send emails, texts, and voicemails to the affected customers."
+358,AccountManagement,Business License,Business License,Business License
+416,AccountManagement,Business License Form,Business License Form,Business License Form
+350,AccountManagement,Business License History,Business License History,Business License History
+359,AccountManagement,Business License Multi Print,Business License Multi Print,Business License Multi Print - allows for two per page printing of business licenses
+348,AccountManagement,Contractor Permits,Contractor Permits,Contractor Permits - a complete listing of permits for a given contractor
+410,AccountManagement,Late Charges - Shut Off Door Tag Labels,Shut Off Door Tag Labels,"Before running this report, you must generate the correct customer list from the Late Charges screen for the ""2. Shut Off Door Tag Labels"" template. This report will return a PDF of door tag labels for the affected customers."
+460,AccountManagement,Multi-Parcel Customers,Shows multi-parcel customers and their attached parcels.,This report shows customers who have more than one active parcel and a list of their attached parcels.
+459,AccountManagement,Multi-Parcel Owners,Shows multi-parcel owners and the related customers.,This report provides a list of multi-parcel owners and the accounts/parcels owned by them.
+101,AccountManagement,Contract Listing,NRG Contract Listing,NRG Contract Listing
+222,AccountManagement,Active Customers & Parcels,A count of active customers and parcels.,"Summary of active customers and parcels organized by account type, account category, and route code with counts and subtotals."
+231,AccountManagement,Budget Billing Anniversaries,Customers within the specified number of days of their annual budget billing anniversary.,Customers within the specified number of days of their annual budget billing anniversary.
+225,AccountManagement,Customer Addresses - 3x10 Label,DO NOT DELETE - LH092018,LH092018 - DO NOT DELETE. Need this in order to edit parameters for PDF format of Jasper Customer Addresses. Leaving report version as Unknown so it appears at the bottom or the reports list and is not readily available to be added to a company.
+224,AccountManagement,Customer Addresses - Excel,"Customer addresses for Active, Inactive or All customers.","Customer addresses for Active, Inactive or All customers. Label format shows customer billing address, Excel format includes service address, phone numbers and email.
+(This is the ""legacy"" report. LH092018)"
+148,AccountManagement,Customer Addresses,Nitor Customer Addresses,Nitor Customer Addresses
+235,AccountManagement,Customer Alerts,A list of all customers with an alert on their account.,Shows a list of all customers with an alert on their account and the alert type. NOTE: Companies that have customer-related custom fields will see an additional “Include on report” option that allows a single custom field to be added as a column in the report results.
+291,AccountManagement,Customer Open Close,Returns customers that have been opened or closed.,Returns customers that have been opened or closed during a specified date range. Open and close are based on the parcel and can be filtered by rat
+361,AccountManagement,Customers In Waiting Status,Customers in Waiting Status,Customers in Waiting Status
+238,AccountManagement,Deferred Billing Customers,A list of customers on a deferred plan.,Shows a list of customers on a deferred billing plan.
+255,AccountManagement,Penalty Exemptions,Customer accounts with penalty exemptions according to Late Charge Template and Exemption Type.,Shows a list of all customer accounts with penalty exemptions according to Late Charge Template and Exemption Type.
+326,AccountManagement,Closed Customers,Redmond Close Customers,Reports customers who have closed an account within the specified time frame.
+325,AccountManagement,Opened Customers,Redmond Open Customers,Reports customers who have opened an account within the specified time frame.
+267,AccountManagement,Deposit Interest,Deposit Interest,Deposit Interest
+268,AccountManagement,Contact Customer,"Detailed customer Contact listings that include Created By, Assigned To, Timestamp, Type, Status, and Notes.","Shows detailed customer Contact listings that include Created By, Assigned To, Timestamp, Type, Status, and Notes with a summary by contact type, status, and count at the end of the report. This report is for use with Contacts created from the New Contact screen containing these data fields."
+234,AccountManagement,Contacts Listing,"Log of customer Contacts that include Created Date, Follow Up Date, Completed, and Note only.","Shows all Contacts with customers, during the given date range, that have been recorded. This report is for use with Contacts created from the New Contact screen containing Date Created, Follow Up/Date, Complete, and Note data fields only."
+391,AccountManagement,Service Call Field Form,Service Orders within a chosen date range,Provides a field form for each incomplete service order based on filters selected.
+261,AccountManagement,Service Calls,Service calls scheduled to occur within a chosen date range.,"Shows all service calls scheduled to occur within a chosen date range, based on filters selected."
+239,AccountManagement,EDU Multipliers,Total number of all Equivalent Dwelling Units on rates assigned to parcels.,Shows the total number of all Equivalent Dwelling Units on rates assigned to parcels.
+249,AccountManagement,Parcel Rates,Rates assigned to active parcels displayed as multipliers.,"This report outputs an Excel file. For each parcel, the report shows a cross-tab of all active rates for the company. If the parcel is assigned that rate, the value shown is the rate multiplier. Totals at the bottom are a count of all active parcels and the number of active parcels with each rate assigned."
+434,AccountManagement,Parcel Rates with Start/End Dates,Parcel Rates with Start/End Dates,List of customers and their parcel billing rates in a selected date range
+257,AccountManagement,Rate Counts,Shows how many parcels have each rate assigned.,Shows how many parcels have each rate assigned.
+414,AccountManagement,Seasonal Interruptions,Seasonal Interruptions,Seasonal Interruptions
+264,AccountManagement,Unused Parcels,A list of all parcels that do not have an active customer assigned.,"Shows a list of all parcels that do not have an active customer assigned. Report can display Active, Inactive, or All parcels."
+392,AccountManagement,Payment Plans,Payment Plans Report,Customer Payment Plan Dates and Amounts
+102,AccountManagement,Rate Details,Details of system rates.,"Displays rate names, descriptions, and all details as saved in SYSTEM INFO > Rates."
+103,AccountManagement,User Security Role,User Security Role,User Security Role
+121,Billing&Financials,One Time Invoice Draft,One Time Invoice Draft,One Time Invoice Draft
+452,Billing&Financials,Rent Manager History,Rent manager job history,"Provides details about the following Rent Manager job runs, based on start and end dates specified: Modify Customers, Synchronize Customers, Synchronize Move Outs, Post Bills."
+176,Billing&Financials,Customer Balance (AS OF),Scvwd - Customer Balance,Scvwd - Customer Balance
+115,Billing&Financials,General Revenue Interface Billing Type,Scvwd General Revenue Interface Billing Type,Scvwd General Revenue Interface Billing Type
+114,Billing&Financials,General Revenue Interface GL,Scvwd General Revenue Interface Gl,Scvwd General Revenue Interface Gl
+120,Billing&Financials,Invoice Step Summary,Scvwd Invoice Step Summary,Scvwd Invoice Step Summary
+154,Billing&Financials,Unbilled Accounts,A list of all accounts that are unbilled after a given cut-off date.,Shows a list of all accounts that are unbilled after a given cut-off date. Report also includes unbilled parcels with no active customers.
+334,Billing&Financials,Lien Balances,(Accounting) Lien Balances,This report shows outstanding lien balances by customer as of the selected date.
+335,Billing&Financials,Lien Balances Transactions,(Accounting) Lien Balances Transactions,This report shows all lien balance transactions during the selected period.
+343,Billing&Financials,Financial Collections,(Accounting) Westmoreland Co. Financial Collections,(Accounting) Westmoreland Co. Financial Collections
+220,Billing&Financials,Accounts Receivable,Current balances for customers.,Shows current balances for customers. Can be generated as of a selected date to show balances historically. Includes both posted and unposted payments. Only includes bills that are posted. Does not include deposit related charges or payments.
+221,Billing&Financials,Accounts Receivable Aging,Customer balances in date range buckets.,Shows current and past due customer balances in date range buckets. Can be generated as of a selected date to show customer balances historically. Includes both posted and unposted payments. Only includes bills that are posted. Does not include deposit related charges or payments.
+405,Billing&Financials,Accounts Receivable Aging by Billing Type,Accounts Receivable Aging by Billing Type,Accounts Receivable Aging by Billing Type
+322,Billing&Financials,Accounts Receivable By Account and Billing Type,AR By Acct and Billing Type,"Accounts Receivable as of the current date, grouped by account and billing type, with grand total."
+324,Billing&Financials,Accounts Receivable By Account and Billing Type (AS OF),AR By Acct and Billing Type As Of,"Accounts Receivable report grouped by account and billing type, with grand total from selected as of date."
+327,Billing&Financials,REMOVE? Asking stephanie,AR By Acct and Billing Type Detail As Of,"Detailed view, Accounts Receivable report grouped by account and billing type, with grand total from selected as of date."
+409,Billing&Financials,AR by Acct and Billing Type (Posted-to-Accounting Activity Only - AS OF),AR By Acct and Billing Type (Posted-to-Accounting Activity Only - As Of),"Customized Accounts Receivable report as of the selected date (based on the posted-to-accounting date), grouped by account and billing type, and showing only activity that has been posted to accounting."
+227,Billing&Financials,Balances by Date,Positive open balances remaining from current balances as of a selected date.,Displays what a customer currently still owes of the amount their current balance was on the date selected. The balance shown will be lower than what their total balance was on that date if any payments or adjustments have since been applied. Including balances of 0 is optional. Does not include credit balances.
+432,Billing&Financials,Business & Operations Building Permits,Building Permit,Building Permit
+247,Billing&Financials,Open Invoices by Billing Type (AS OF),"Open invoices as of a selected date, grouped by billing type.","Open balances for all bills, both posted and unposted, as of a selected date, grouped by billing type. Summary shows a total open balance of each billing type. Detail shows open balances, by billing type, per customer with bill date and aging."
+347,Billing&Financials,Building Permits,Building Permit,Building Permit
+265,Billing&Financials,Write Off,Write-offs applied to accounts during a given date range.,Shows all write-offs applied to accounts during a given date range.
+402,Billing&Financials,Unposted Bill Details,Ak Chin Unposted Bill Details,Ak Chin Unposted Bill Details
+403,Billing&Financials,Unposted Bill Details - Gallons,Ak Chin Unposted Bill Details With Gallons Header,Ak Chin Unposted Bill Details With Gallons Header
+228,Billing&Financials,Bill Count by ZIP Code,Count of unposted invoices created for each zip code.,Shows the number of unposted invoices created for each zip code.
+229,Billing&Financials,Bill Register Preview,"A listing of all unposted bills, generated as a PDF or Excel file.","A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill."
+341,Billing&Financials,Bill Register Preview With Adjustments,A listing of all unposted bills and adjustments.,"A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill, with line item adjustments."
+356,Billing&Financials,Bill Register Preview With Reading Dates,"A listing of all unposted bills, with reading dates.","A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill."
+230,Billing&Financials,Bill Review,Individual rate charges billed within a selected date range.,Shows individual rate charges billed within a selected date range. Includes both posted and unposted bills.
+345,Billing&Financials,Current Charges,Current Charges,"Current Charges Report - a variation on the ""Bill Register Preview"" report that excludes payments and previous balances."
+289,Billing&Financials,Final Bills,Final bills that have a bill date within the given date range.,"Displays all final bills that have a bill date within the given date range, ordered by customer account number. Includes line item detail of each bill with subtotals. Report concludes with a total count of final bills and a grand total."
+266,Billing&Financials,Invoices,All bills in a selected date range.,Shows all bills in a selected date range. Includes fees for returned payments but does not include adjustments or returned payments.
+319,Billing&Financials,Rate Export,Redmond Rate Export Report,Redmond Rate Export Report
+263,Billing&Financials,Unbilled Accounts,A list of all accounts that are unbilled after a given cut-off date.,Shows a list of all accounts that are unbilled after a given cut-off date. Report also includes unbilled parcels with no active customers.
+288,Billing&Financials,Voided Bills,Voided bills within the chosen date range based on original bill date.,"Includes detailed line items of voided bills, grouped by customer, within the chosen date range based on original bill date."
+110,Billing&Financials,Bill Review,Amps Bill Review,Amps Bill Review
+417,Billing&Financials,Customer Security Deposit Transactions Original,"Security deposits received, returned, applied, and refunded within a selected date range - Original version","Shows security deposits received, returned, applied, and refunded within a selected date range. - Original version"
+91,Billing&Financials,Invoice Detail Recap,"Invoice recap for customers, in service type groups, for a date range.","Invoice recap for customers, in service type groups, for a date range."
+457,Billing&Financials,Non-Tax Report,Non-Tax Report,Returns bill and payment amounts for non-tax customers who have payments in the specified date range or bills in the month previous to the specified date range.
+237,Billing&Financials,Customer Security Deposits,Security deposits held for customers.,This report shows security deposits currently held for customers. The Late Charge Template selected is used to find the most recent late charge for each customer. The report can also be processed as of a historical date.
+215,Billing&Financials,Accounting,Bills and payments that have been posted to accounting within a selected date range.,"Shows bills and payments, in detail or summary view, that have been posted to accounting within a selected date range."
+161,Billing&Financials,Accounts Receivable Aging (AS OF),Invoices Summary,Invoices Summary
+379,Billing&Financials,Accounts Receivable Aging - XLS,Accounts Receivable Aging,Accounts Receivable Aging
+133,Billing&Financials,Accounts Receivable (AS OF),Accounts Receivable As Of,Accounts Receivable As Of
+226,Billing&Financials,Adjustments,"Adjustments in a chosen date range grouped by billing type, account category, or account number.","Shows all adjustments in a chosen date range grouped by billing type, account category, or account number. Summary shows the sum of all adjustments. Detail shows individual adjustments."
+127,Billing&Financials,Bill Exception,Bill Exception,Bill Exception
+236,Billing&Financials,Customer Security Deposit Transactions,"Security deposits received, returned, applied, and refunded within a selected date range.","Shows security deposits received, returned, applied, and refunded within a selected date range."
+211,Billing&Financials,Directors,Directors,"Overview of usage provided, services billed, and accounts receivable."
+240,Billing&Financials,G/L by Billing Type Summary,"Revenue grouped by billing type, then revenue account, then A/R account.","A summary of revenue grouped by billing type, then revenue account, then A/R account."
+241,Billing&Financials,G/L Transaction Summary,"Revenue grouped by date, then billing type, then revenue account.","Revenue grouped by date, then billing type, then revenue account. Includes a detailed Summary by Date and an abridged Summary by Revenue Account."
+209,Billing&Financials,Ground Water Invoice,Ground Water Invoice,Ground Water Invoice
+123,Billing&Financials,Invoices Detail,Invoices Detail,Invoices Detail
+122,Billing&Financials,Invoices Summary,Invoices Summary,Invoices Summary
+242,Billing&Financials,Journal Entries,Journal entries to be made based on debits and credits for the selected date range.,"Journal entries to be made based on debits and credits for the selected date range. The journal entries in this report are appropriate to enter to QuickBooks or similar program. Bills and payments are included regardless of being posted to accounting, but must be posted to customers before appearing in this report."
+271,Billing&Financials,Monthly Activities,"Overview of usage provided, services billed, and accounts receivable.","Overview of usage provided, services billed, and accounts receivable."
+418,Billing&Financials,REMOVE?,"Overview of usage provided, services billed, and accounts receivable. Simplified version","Overview of usage provided, services billed, and accounts receivable. Simplified version"
+136,Billing&Financials,Multi-line Adjustments,Multi-line Adjustments,Multi-line Adjustments
+377,Billing&Financials,Open Deposit Charges,Open Deposit Charges,Open Deposit Charges
+135,Billing&Financials,Open Invoice,Open Invoice,Open Invoice
+167,Billing&Financials,Open Invoices Detail,Open Invoices Detail - Scvwd,Open Invoices Detail - Scvwd
+139,Billing&Financials,Open Invoices Summary,All open invoices.,All open invoices.
+256,Billing&Financials,Billed Rate Code Summary,Summary by rate code of usage and revenue.,Summary by rate code of usage and revenue.
+259,Billing&Financials,Revenue,"All bills, posted and unposted, from a chosen date range.","All bills, including posted and unposted, from a chosen date range. Summary shows the sum of all bills. Detail shows each individual bill. Does not include adjustments or returned payments. Does include fees for returned payments."
+177,Metering&Consumption,Water Production,Scvwd - Water Production,Scvwd - Water Production
+376,Metering&Consumption,Meter Reading Consumption,Meter Reading Consumption,"This report shows all metered consumption for a selected date range based on end reading. The summary report shows the sum of consumption for all meters, whereas the detail report shows consumption for each meter individually."
+456,Metering&Consumption,Meter Re-Reads (Formula),Lists unposted meter reads with characteristics outside of set thresholds.,"Lists unposted meter reads with characteristics outside of set thresholds. Available in Route/Book/Stop, Account Number, or Address order. Includes a column to record a new, updated reading."
+166,Metering&Consumption,Meter Usage,Meter Usage - Hoschton,Meter Usage - Hoschton
+355,Metering&Consumption,Routes,Creates a report for manually recording meter readings.,Creates a report for manually recording meter readings.
+314,Metering&Consumption,Backflow Export,Redmond Backflow Export Report,Redmond Backflow Export Report
+125,Metering&Consumption,Backflow Devices Test Dates,"Lists backflow devices test dates, both past and future.","Provides backflow devices test dates, both historical and future, as well as location and device details."
+390,Metering&Consumption,Production Breakdown by Date,(PVC) Production Breakdown by Date,(PVC) Production Breakdown by Date
+389,Metering&Consumption,Turnout Consumption Breakdown,Turnout Consumption,Turnout Consumption
+387,Metering&Consumption,Turnout Listing,Turnout Listing,Turnout Listing
+461,Metering&Consumption,Consumption By Tier,"Report shows billed consumption by rate and tier, for all tiers that have a charge > 0.",This report shows billed consumption by rate and tier for all tiers that have a charge amount > 0 in xls format. Consumption amounts that result in no charge to the customer are excluded.
+415,Metering&Consumption,Electric Consumption Report,Electric Consumption,"Customized Electric Consumption report showing number of customers, base charges, electric consumption and total amount billed by individual electric rate code, filterable by account type and category."
+106,Metering&Consumption,Annual Customer Consumption History,NRG Annual Customer Consumption History,NRG Annual Customer Consumption History
+107,Metering&Consumption,Meter Usage (AS OF),NRG Meter Usage,NRG Meter Usage
+131,Metering&Consumption,Water Loss,Water Loss,Water Loss
+233,Metering&Consumption,Consumption,Billed consumption in a given date range for all customers.,Shows billed consumption in a given date range based on either end reading date or bill date for all customers. Report only shows consumption associated with posted bills; consumption related to unposted bills is not included.
+294,Metering&Consumption,CROA Meter Reading Consumption,CROA parcel metered consumption for a selected date range.,"All CROA parcel metered consumption for a selected date range based on end reading. Summary shows the sum of consumption for all meters. Detail shows consumption of each meter individually. NOTE: The Consumption From/To fields do not need to be filled in if restrictions on returned records are not necessary, and the report will show all records. If a value is entered only in the Consumption From field, the report will include results greater than and equal to the entry. If a value is entered only in the Consumption To field, the report will show results that are less than and equal to the entry. They may also both be used, and everything in between and including the inputted values will be returned on the report."
+272,Metering&Consumption,Meter Re-Reads,Lists unposted meter reads with characteristics outside of set thresholds.,"Lists unposted meter reads with characteristics outside of set thresholds. Available in Route/Book/Stop, Account Number, or Address order. Includes a column to record a new, updated reading. NOTE: ""High Variance"" or ""Low Variance"" must be selected from the ""Warning"" dropdown list before entering the variance percentage."
+243,Metering&Consumption,Meter Reading Consumption,Metered consumption for a selected date range.,"All metered consumption for a selected date range based on end reading. Summary shows the sum of consumption for all meters. Detail shows consumption of each meter individually.
+
+NOTE: The Consumption From/To fields do not need to be filled in if restrictions on returned records are not necessary, and the report will show all records. If a value is entered only in the Consumption From field, the report will include results greater than and equal to the entry. If a value is entered only in the Consumption To field, the report will show results that are less than and equal to the entry. They may also both be used, and everything in between and including the inputted values will be returned on the report."
+304,Metering&Consumption,Meter Reading History,Meter Reading History,"Displays the reading history of meters, grouped by customer, account number, and meter."
+129,Metering&Consumption,Meter Reading Review,Meter Reading Review,Meter Reading Review
+367,Metering&Consumption,Meter Variance,Lists meters whose readings fall above or below the variance thresholds,Lists meters whose readings fall above or below the variance thresholds. Values entered represent the percent difference between current unposted read with the last posted read. High Variance Threshold can be entered as any positive whole number. Low variance threshold may be entered as a number between 0-99.
+260,Metering&Consumption,Routes,Creates a report for manually recording meter readings.,"Creates a report for manually recording meter readings. Shows account and meter information for each meter with an empty column for writing new end readings. By default, it includes all active meters belonging to active parcels regardless of an active customer being present."
+413,Metering&Consumption,Routes (3 Decimal Places),Creates a report for manually recording meter readings.,"Creates a report for manually recording meter readings. Shows account and meter information for each meter with an empty column for writing new end readings. By default, it includes all active meters belonging to active parcels regardless of an active customer being present."
+396,Metering&Consumption,Unposted Meter Readings,Unposted Meter Readings,Unposted Meter Readings
+380,Metering&Consumption,Zero Consumption Meters,Zero Usage Report,Zero Usage Report
+117,Payments,Cash Deposited,Scvwd Cash Deposited,Scvwd Cash Deposited
+116,Payments,Cash Receipts Applied Details,Scvwd Cash Receipts Applied Details,Scvwd Cash Receipts Applied Details
+169,Payments,Auto Pay Customers,"A list of all auto pay customers with active, pending, or canceled statuses of enrollment.","Shows a list of all auto pay customers with active, pending, or canceled statuses of enrollment."
+385,Payments,Payment Allocation Changes,Payment Allocation Changes,Payment Allocation Changes
+183,Payments,Batch Transaction,SUMI - Batch Transaction,SUMI - Batch Transaction
+162,Payments,Payment Allocation Changes,Payment Allocation Changes,Payment Allocation Changes
+153,Payments,Payments by Payment Type,Nitor Payments by Payment Type,Payments grouped by Payment Type.
+218,Payments,Payments Detail,Payments Detail,Payments Detail
+163,Payments,Unallocated Payments,Invoices Summary,Invoices Summary
+232,Payments,Cash Receipts,"Payments, both posted and unposted.","Payments, both posted and unposted, by account category and then by account type and billing type. Detail report shows payments per customer, per billing type. Summary report shows amounts per billing type."
+354,Payments,IVR Payments By Date,IVR Payments in a selected date range.,"All IVR payments within a selected date range. Summary includes sections showing payments by Payment Date, by Billing Type, and by Payment Type (Billing Type per Payment Type). Detail displays payments per customer, grouped and ordered by Payment Date."
+245,Payments,Online Payment Deposit Reconciliation,Online credit card payment batches processed within a given date range.,"Shows online credit card payment batches processed within the given date range. ""Summary"" shows amounts grouped by billing type and sorted by batch ID. ""Deposits"" shows a total amount grouped by batch ID. ""Detail"" shows each customer's deposit amount, fee amount, and total payment, sorted by batch ID and customer account number."
+244,Payments,Online Payments,"Online payments within a selected date range, sorted by date and account number.","All online payments within a selected date range based on payment date, sorted by date and account number. NOTE: Applied Amount column is only available for payments made after 10/1/2015."
+151,Payments,Online Payments - Nitor,Nitor Online Payments,Nitor Online Payments
+248,Payments,Overpayments,Payments not currently applied to a bill.,Shows non-deposit payments that are not currently applied to a bill on a customer account. Summary shows the sum of all overpayments by billing type. Detail shows each customer with an overpayment and can be grouped by billing type if desired
+251,Payments,Payment Reconciliation Batches,Batches of payments posted in Reconcile Payments within a chosen date range.,All batches of payments posted in Reconcile Payments within a chosen date range. Grouped by batch date and Received By.
+352,Payments,Payment Reconciliation Batches Alt,Alternate view of Payment Reconciliation Batches,"
+Alternate view of Payment Reconciliation Batches
+"
+124,Payments,Payments,Payments,Payments
+252,Payments,Payments by Billing Type,Payments in a specified date range grouped by billing type.,"All payments in a specified date range grouped by billing type. Summary shows payment amounts by account type, then account category, then billing type. Detail displays payments for each customer grouped by account type, then account category, then billing type."
+253,Payments,Payments by Date,Payments in a selected date range.,"All payments in a selected date range. Summary includes sections showing payments by Payment Date, by Billing Type, and by Payment Type (Billing Type per Payment Type). Detail displays payments per customer, grouped and ordered by Payment Date."
+254,Payments,Payments by Payment Type,Payments within a selected date range grouped by payment type.,All payments within a selected date range grouped by payment type. Summary shows payments by payment type and billing type. Detail lists individual payments by payment type ordered by date then account number.
+331,Payments,Payments by Payment Type With Deposits,"Payments within a selected date range grouped by payment type, with deposits section.",All payments within a selected date range grouped by payment type. Summary shows payments by payment type and billing type. Detail lists individual payments by payment type ordered by date then account number. Includes a deposits section post-summary.
+258,Payments,Returned Payments,Returned payments within a date range.,Shows returned payments within a selected date range. Also displays any returned payment fees applied to customers. Bill Date signifies the day the payment was returned in the system and corresponding debits created.
+203,Payments,Unapplied Payments,Payments that have not been applied or that are applied to an unposted bill.,Payments that have not been applied or that are applied to an unposted bill.

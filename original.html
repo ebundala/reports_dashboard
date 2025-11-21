@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3b82f6", // Blue
+              "background-light": "#f8fafc", // Very light gray, almost white
+              "background-dark": "#1e293b", // Slate 800
+            },
+            fontFamily: {
+              display: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.375rem", // md
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      .material-icons {
+        font-size: 1.25rem;
+        line-height: 1;
+        vertical-align: middle;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-700 dark:text-gray-300">
+<div class="flex flex-col min-h-screen" id="wrapper">
+<header class="bg-[#1e293b] text-white shadow-md">
+<div class="container mx-auto px-4 lg:px-6">
+<div class="flex items-center justify-between py-2">
+<div class="flex items-center space-x-4">
+<img alt="Company Logo" class="h-8 w-auto invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Zeio8MuPoC_gjQQtm_pcDUiz-YvenoJZ8NNLQIpAh8PfuW8t1D6rYkEG8LKMCLXplH_a6V6dDK76HbrqJ79iNPoy-ixlyW0pZt4lyggDsIjYRc8B2givOFcom6ukceE4wIjZtF8XPtca55fxzf-_gLCE6sDOCLqHiYFEcnBzhOOngbp9nJFAYrr-tGMW8OusO19MIsCQ4a0a7GpmPQclqIQ3dPYjJofeNKb-YeLJyVWLaIi5LlATx1fNxJSawYAKvh0XkOUT0W0"/>
+<nav class="hidden md:flex items-center space-x-2 text-sm">
+<a class="px-3 py-2 rounded-md hover:bg-gray-700" href="#">Search</a>
+<a class="px-3 py-2 rounded-md hover:bg-gray-700" href="#">Billing</a>
+<a class="px-3 py-2 rounded-md hover:bg-gray-700" href="#">Configuration</a>
+<a class="px-3 py-2 rounded-md bg-gray-700" href="#">Data</a>
+<a class="flex items-center px-3 py-2 rounded-md hover:bg-gray-700" href="#">
+                                Help <span class="material-icons text-base ml-1">arrow_drop_down</span>
+</a>
+<a class="px-3 py-2 rounded-md hover:bg-gray-700" href="#">Support</a>
+</nav>
+</div>
+<div class="text-right text-sm">
+<p>City of Cedar Hill</p>
+<p class="text-gray-400">Modifying: Mitch Warren</p>
+</div>
+</div>
+</div>
+<div class="bg-primary">
+<div class="container mx-auto px-4 lg:px-6">
+<nav class="flex items-center space-x-2 text-sm font-medium">
+<a class="py-2 px-3 text-white border-b-2 border-white" href="#">Customer</a>
+<a class="py-2 px-3 text-blue-200 hover:text-white hover:border-b-2 hover:border-blue-200 transition-colors duration-200" href="#">Parcel</a>
+<a class="py-2 px-3 text-blue-200 hover:text-white hover:border-b-2 hover:border-blue-200 transition-colors duration-200" href="#">Payment</a>
+<a class="py-2 px-3 text-blue-200 hover:text-white hover:border-b-2 hover:border-blue-200 transition-colors duration-200" href="#">Multi-Parcel Owners</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 lg:px-6 py-8">
+<h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8">Reports</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="space-y-6">
+<div class="flex items-center pb-2 border-b border-gray-300 dark:border-gray-600">
+<span class="material-icons text-primary mr-2">person</span>
+<h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Account Management</h2>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Contact Customer</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Detailed customer Contact listings that include Created By, Assignee To, Timestamp, Type, Status, And Notes.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Contacts Listing</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Log of customer Contacts that include Created Date, Follow Up Date, Completed, and Note only.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Service Call Field Form</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Service orders within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Service Calls</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Service calls scheduled to occur within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Cash Receipts</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments, both posted and unposted.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Deposit Reconciliation</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online credit card payment batches processed within a given date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Payments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online payments within a selected date range, sorted by date and account number.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Overpayments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments not currently applied to a bill.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Plans</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payment Plans Report.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Reconciliation Batches</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Batches of payments, posted in Reconcile Payments within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Billing Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range grouped by billing type.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Date</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Payment Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments within a selected date range grouped by payment type, with deposits section.</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center pb-2 border-b border-gray-300 dark:border-gray-600">
+<span class="material-icons text-primary mr-2">receipt_long</span>
+<h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Billing &amp; Financials</h2>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Count by ZIP Code</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Count of unposted invoices created for each zip code.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Register Preview</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">A listing of all unposted bills, generated as a PDF or Excel File.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Review</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Individual rate charges billed within a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Current Charges</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Current Charges</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Final Bills</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Final bills that have a bill date within the given date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Invoices</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">All bills in a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Unbilled Accounts</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">A list of all accounts that are unbilled after a given cut off date.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Voided Bills</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Voided bills within the chosen date range based on original bill date.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Count by ZIP Code</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Count of unposted invoices created for each zip code.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Register Preview</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">A listing of all unposted bills, generated as a PDF or Excel File.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Bill Review</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Individual rate charges billed within a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Current Charges</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Current Charges</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Final Bills</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Final bills that have a bill date within the given date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Invoices</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">All bills in a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Unbilled Accounts</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">A list of all accounts that are unbilled after a given cut off date.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Voided Bills</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Voided bills within the chosen date range based on original bill date.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Date</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range.</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center pb-2 border-b border-gray-300 dark:border-gray-600">
+<span class="material-icons text-primary mr-2">speed</span>
+<h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Metering &amp; Consumption</h2>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Consumption</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Billed consumption in a given date range for all customers.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Meter Re Reads</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Lists unposted meter reads with characteristics outside of set thresholds.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Meter Reading Consumption</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Billed consumption for a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Meter Variance</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Lists meters whose readings fall above or below the variance thresholds.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Routes</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Creates a report for manually recording meter readings.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Unposted Meter Readings</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Unposted Meter Readings.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Zero Usage Report</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Zero Usage Report.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Cash Receipts</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments, both posted and unposted.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Deposit Reconciliation</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online credit card payment batches processed within a given date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Payments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online payments within a selected date range, sorted by date and account number.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Overpayments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments not currently applied to a bill.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Plans</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payment Plans Report.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Reconciliation Batches</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Batches of payments posted in Reconcile Payments within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Billing Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range grouped by billing type.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Date</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Payment Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments within a selected date range grouped by payment type, with deposits section.</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center pb-2 border-b border-gray-300 dark:border-gray-600">
+<span class="material-icons text-primary mr-2">payment</span>
+<h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Payments</h2>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Cash Receipts</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments, both posted and unposted.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Deposit Reconciliation</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online credit card payment batches processed within a given date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Online Payments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Online payments within a selected date range, sorted by date and account number.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Overpayments</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments not currently applied to a bill.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Plans</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payment Plans Report.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Reconciliation Batches</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Batches of payments posted in Reconcile Payments within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Billing Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a specified date range grouped by billing type.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Date</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments by date within a payment type.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Plans</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payment Plans Report.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payment Reconciliation Batches</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Batches of payments posted in Reconcile Payments within a chosen date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Billing Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a specified date range grouped by billing type.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Date</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments in a selected date range.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded p-4 space-y-1 hover:shadow-lg transition-shadow">
+<h3 class="font-semibold text-primary">Payments by Payment Type</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Payments within a selected date range grouped by payment type, with deposits section.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-primary text-white text-sm">
+<div class="container mx-auto px-4 lg:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap gap-x-4 gap-y-2">
+<a class="hover:underline" href="#">Add Customer</a>
+<a class="hover:underline" href="#">Add Parcel</a>
+<a class="hover:underline" href="#">Add Multi-Parcel Owner</a>
+<a class="hover:underline" href="#">Billing Calculation</a>
+<a class="hover:underline" href="#">Fast Payment Entry</a>
+<a class="hover:underline" href="#">Payment Entry</a>
+<a class="hover:underline" href="#">Payment History</a>
+<a class="hover:underline" href="#">Reconcile Payments</a>
+<a class="hover:underline" href="#">Search Payments</a>
+<a class="hover:underline" href="#">Search Multi-Parcel Owners</a>
+<a class="hover:underline" href="#">Search Parcels</a>
+</div>
+<div class="flex items-center space-x-4">
+<a class="hover:underline" href="#">Security &amp; Refund Policy</a>
+<a class="hover:underline" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

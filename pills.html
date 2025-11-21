@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<style>
+        .material-icons-outlined {
+            font-size: 20px;
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3b82f6", // blue-500
+              "background-light": "#f8fafc", // slate-50
+              "background-dark": "#0f172a", // slate-900
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem", // 8px
+            },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-700 dark:text-slate-300">
+<div class="flex flex-col min-h-screen">
+<header class="bg-slate-800 dark:bg-slate-950 shadow-md text-white">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center py-3">
+<div class="flex items-center space-x-4">
+<img alt="Company Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtPk04WVQiybIrKSZ4ttqcbA9zukydDDfh3FADk9RtouluILlTdQ0Q5B0aP7SnbnJpehoHp7VhTixpfAF2B_eSHGIb0-itwM35qVIZ5oRoEV5I3_NxG-9bUFUEewqo5Bzws_QWuuO3Sxw6Ma-qr7KOud9lq3CONg1Iw-38xZGW-Qdu6cEcEmlZ7-knUZm2P1gMqG0opLOQsaRnYorGDgvXq2P7i8-im7C-MKk0Cgbz1vgsk_jL99hcEY6tcXZ9M24q1HKh0GcvSL0"/>
+<nav class="hidden md:flex items-center space-x-2">
+<a class="px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-700 dark:hover:bg-slate-800" href="#">Search</a>
+<a class="px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-700 dark:hover:bg-slate-800" href="#">Billing</a>
+<a class="px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-700 dark:hover:bg-slate-800" href="#">Configuration</a>
+<a class="px-3 py-2 text-sm font-medium rounded-md bg-slate-700 dark:bg-slate-800" href="#">Data</a>
+<a class="px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-700 dark:hover:bg-slate-800 flex items-center" href="#">Help <span class="material-icons-outlined text-base ml-1">expand_more</span></a>
+<a class="px-3 py-2 text-sm font-medium rounded-md hover:bg-slate-700 dark:hover:bg-slate-800" href="#">Support</a>
+</nav>
+</div>
+<div class="text-right text-sm">
+<p>City of Cedar Hill</p>
+<p class="text-slate-400">Modifying: Mitch Warren</p>
+</div>
+</div>
+<div class="bg-primary">
+<nav class="flex items-center space-x-1">
+<a class="px-4 py-3 text-sm font-medium text-white hover:bg-blue-600" href="#">Customer</a>
+<a class="px-4 py-3 text-sm font-medium text-white hover:bg-blue-600" href="#">Parcel</a>
+<a class="px-4 py-3 text-sm font-medium text-white hover:bg-blue-600" href="#">Payment</a>
+<a class="px-4 py-3 text-sm font-medium text-white hover:bg-blue-600" href="#">Multi-Parcel
+                        Owners</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 py-8">
+<h1 class="text-4xl font-bold text-slate-800 dark:text-white mb-8">Reports</h1>
+<div class="mb-6">
+<label class="sr-only" for="search-reports">Search reports</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-icons-outlined text-slate-400">search</span>
+</div>
+<input class="w-full pl-10 pr-4 py-3 text-lg border border-slate-300 dark:border-slate-700 rounded-lg focus:ring-primary focus:border-primary bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400" id="search-reports" placeholder="Search reports by title or description..." type="text"/>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium cursor-pointer">All Reports</span>
+<span class="px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-primary hover:text-white cursor-pointer transition-colors duration-200">Account Management</span>
+<span class="px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-primary hover:text-white cursor-pointer transition-colors duration-200">Billing &amp; Financials</span>
+<span class="px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-primary hover:text-white cursor-pointer transition-colors duration-200">Metering &amp; Consumption</span>
+<span class="px-4 py-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-primary hover:text-white cursor-pointer transition-colors duration-200">Payments</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Contact Customer</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Detailed customer Contact listings that include Created By, Assignee To, Timestamp, Type, Status, and Notes.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Account Management</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Contacts Listing</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Log of customer Contacts that include Created Date, Follow Up Date, Completed, and Note only.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Account Management</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Service Call Field Form</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Service orders within a chosen date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Account Management</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Service Calls</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Service calls scheduled to occur within a chosen date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Account Management</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Bill Count by ZIP Code</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Count of unposted invoices created for each zip code.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Bill Register Preview</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">A listing of all unposted bills, generated as a PDF or Excel file.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Bill Review</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Individual rate charges billed within a selected date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Current Charges</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Current Charges</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Final Bills</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Final bills that have a bill date within the given date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Invoices</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">All bills in a selected date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Unbilled Accounts</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">A list of all accounts that are unbilled after a given cut-off date.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Voided Bills</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Voided bills within the chosen date range based on original bill date.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Billing &amp; Financials</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Consumption</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Billed consumption in a given date range for all customers.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Meter Re-Reads</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Lists unposted meter reads with characteristics outside of set thresholds.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Meter Reading Consumption</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Metered consumption for a selected date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Meter Variance</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Lists meters whose readings fall above or below the variance thresholds.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Routes</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Creates a report for manually recording meter readings.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Unposted Meter Readings</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Unposted Meter Readings</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Zero Usage Report</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Zero Usage Report</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Metering &amp; Consumption</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Cash Receipts</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payments, both posted and unposted.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Online Deposit Reconciliation</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Online credit card payment batches processed within a given date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Online Payments</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Online payments within a selected date range, sorted by date and account number.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Overpayments</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payments not currently applied to a bill.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Payment Plans</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payment Plans Report</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Payment Reconciliation Batches</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Batches of payments posted in Reconcile Payments within a chosen date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Payments by Billing Type</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payments in a specified date range grouped by billing type.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Payments by Date</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payments in a selected date range.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+<a class="flex flex-col p-5 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-200" href="#">
+<div class="flex-grow">
+<h3 class="font-semibold text-primary mb-1">Payments by Payment Type</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Payments within a selected date range grouped by payment type, with deposits section.</p>
+</div>
+<span class="text-xs px-2 py-0.5 mt-3 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 rounded-full self-start">Payments</span>
+</a>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto">
+<div class="container mx-auto px-4 py-4 text-xs text-slate-500 dark:text-slate-400">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div>
+<ul class="space-y-1">
+<li><a class="hover:text-primary" href="#">Add Customer</a></li>
+<li><a class="hover:text-primary" href="#">Add Multi-Parcel Owner</a></li>
+<li><a class="hover:text-primary" href="#">Billing Calculation</a></li>
+<li><a class="hover:text-primary" href="#">Fast Payment Entry</a></li>
+<li><a class="hover:text-primary" href="#">Payment History</a></li>
+<li><a class="hover:text-primary" href="#">Bill Printing</a></li>
+</ul>
+</div>
+<div>
+<ul class="space-y-1">
+<li><a class="hover:text-primary" href="#">Reconcile Payments</a></li>
+<li><a class="hover:text-primary" href="#">Search Parcels</a></li>
+<li><a class="hover:text-primary" href="#">Search Multi-Parcel Owners</a></li>
+<li><a class="hover:text-primary" href="#">Search Parcels</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1 md:col-start-4">
+<div class="flex space-x-4 items-start">
+<div class="flex-grow space-y-1">
+<p>Overdue Payments</p>
+<p>Reminders Due</p>
+<p>Open Service</p>
+<p>Assigned Contacts</p>
+</div>
+<div class="text-right font-mono">
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+</div>
+<button class="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-3 py-1 rounded text-xs hover:bg-slate-300 dark:hover:bg-slate-600">
+                            Print
+                        </button>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 text-center text-slate-400">
+<p>© 2024 Your Company. All rights reserved. | <a class="hover:text-primary" href="#">Security &amp;
+                    Refund Policy</a> | <a class="hover:text-primary" href="#">Privacy Policy</a></p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,1102 @@
+{
+  "reports": [
+    {
+      "id": 346,
+      "category": "AccountManagement",
+      "name": "Permits By Date",
+      "shortDescription": "Permits By Date",
+      "longDescription": "Permits By Date - includes permits and associated data for a selected date range"
+    },
+    {
+      "id": 328,
+      "category": "AccountManagement",
+      "name": "Totalizer Report",
+      "shortDescription": "SCVWD Totalizer Report",
+      "longDescription": "Accounts by Totalizer and Well"
+    },
+    {
+      "id": 368,
+      "category": "AccountManagement",
+      "name": "Skipped Tax Worksheet",
+      "shortDescription": "Customers who should have submitted a tax worksheet but haven't.",
+      "longDescription": "Customers who should have submitted a tax worksheet but haven't."
+    },
+    {
+      "id": 338,
+      "category": "AccountManagement",
+      "name": "Service Calls",
+      "shortDescription": "Service Calls by Parcel",
+      "longDescription": "Service Calls by Parcel"
+    },
+    {
+      "id": 250,
+      "category": "AccountManagement",
+      "name": "Past Due Customers",
+      "shortDescription": "Customers who are more than the given number of days past due.",
+      "longDescription": "Shows a list of customers who are more than the given number of days past due. Includes active and inactive customers."
+    },
+    {
+      "id": 321,
+      "category": "AccountManagement",
+      "name": "Billing Types",
+      "shortDescription": "Billing Types",
+      "longDescription": "Billing Types and their associated accounts"
+    },
+    {
+      "id": 381,
+      "category": "AccountManagement",
+      "name": "Third Party Print Customers",
+      "shortDescription": "Third Party Print Customers",
+      "longDescription": "Third Party Print Customers"
+    },
+    {
+      "id": 419,
+      "category": "AccountManagement",
+      "name": "Broadcast Notifications as a Service",
+      "shortDescription": "Provides customer list CSV used for Broadcast Notifications as a Service",
+      "longDescription": "Before running this report, you must generate the relevant customer list from the Late Charges screen for the desired late charge template. This report will return a CSV file of the most recently-generated customer list for the selected template, which can then be loaded to Intermedia to send emails, texts, and voicemails to the affected customers."
+    },
+    {
+      "id": 358,
+      "category": "AccountManagement",
+      "name": "Business License",
+      "shortDescription": "Business License",
+      "longDescription": "Business License"
+    },
+    {
+      "id": 416,
+      "category": "AccountManagement",
+      "name": "Business License Form",
+      "shortDescription": "Business License Form",
+      "longDescription": "Business License Form"
+    },
+    {
+      "id": 350,
+      "category": "AccountManagement",
+      "name": "Business License History",
+      "shortDescription": "Business License History",
+      "longDescription": "Business License History"
+    },
+    {
+      "id": 359,
+      "category": "AccountManagement",
+      "name": "Business License Multi Print",
+      "shortDescription": "Business License Multi Print",
+      "longDescription": "Business License Multi Print - allows for two per page printing of business licenses"
+    },
+    {
+      "id": 348,
+      "category": "AccountManagement",
+      "name": "Contractor Permits",
+      "shortDescription": "Contractor Permits",
+      "longDescription": "Contractor Permits - a complete listing of permits for a given contractor"
+    },
+    {
+      "id": 410,
+      "category": "AccountManagement",
+      "name": "Late Charges - Shut Off Door Tag Labels",
+      "shortDescription": "Shut Off Door Tag Labels",
+      "longDescription": "Before running this report, you must generate the correct customer list from the Late Charges screen for the \"2. Shut Off Door Tag Labels\" template. This report will return a PDF of door tag labels for the affected customers."
+    },
+    {
+      "id": 460,
+      "category": "AccountManagement",
+      "name": "Multi-Parcel Customers",
+      "shortDescription": "Shows multi-parcel customers and their attached parcels.",
+      "longDescription": "This report shows customers who have more than one active parcel and a list of their attached parcels."
+    },
+    {
+      "id": 459,
+      "category": "AccountManagement",
+      "name": "Multi-Parcel Owners",
+      "shortDescription": "Shows multi-parcel owners and the related customers.",
+      "longDescription": "This report provides a list of multi-parcel owners and the accounts/parcels owned by them."
+    },
+    {
+      "id": 101,
+      "category": "AccountManagement",
+      "name": "Contract Listing",
+      "shortDescription": "NRG Contract Listing",
+      "longDescription": "NRG Contract Listing"
+    },
+    {
+      "id": 222,
+      "category": "AccountManagement",
+      "name": "Active Customers & Parcels",
+      "shortDescription": "A count of active customers and parcels.",
+      "longDescription": "Summary of active customers and parcels organized by account type, account category, and route code with counts and subtotals."
+    },
+    {
+      "id": 231,
+      "category": "AccountManagement",
+      "name": "Budget Billing Anniversaries",
+      "shortDescription": "Customers within the specified number of days of their annual budget billing anniversary.",
+      "longDescription": "Customers within the specified number of days of their annual budget billing anniversary."
+    },
+    {
+      "id": 225,
+      "category": "AccountManagement",
+      "name": "Customer Addresses - 3x10 Label",
+      "shortDescription": "DO NOT DELETE - LH092018",
+      "longDescription": "LH092018 - DO NOT DELETE. Need this in order to edit parameters for PDF format of Jasper Customer Addresses. Leaving report version as Unknown so it appears at the bottom or the reports list and is not readily available to be added to a company."
+    },
+    {
+      "id": 224,
+      "category": "AccountManagement",
+      "name": "Customer Addresses - Excel",
+      "shortDescription": "Customer addresses for Active, Inactive or All customers.",
+      "longDescription": "Customer addresses for Active, Inactive or All customers. Label format shows customer billing address, Excel format includes service address, phone numbers and email.\n(This is the \"legacy\" report. LH092018)"
+    },
+    {
+      "id": 148,
+      "category": "AccountManagement",
+      "name": "Customer Addresses",
+      "shortDescription": "Nitor Customer Addresses",
+      "longDescription": "Nitor Customer Addresses"
+    },
+    {
+      "id": 235,
+      "category": "AccountManagement",
+      "name": "Customer Alerts",
+      "shortDescription": "A list of all customers with an alert on their account.",
+      "longDescription": "Shows a list of all customers with an alert on their account and the alert type. NOTE: Companies that have customer-related custom fields will see an additional \"Include on report\" option that allows a single custom field to be added as a column in the report results."
+    },
+    {
+      "id": 291,
+      "category": "AccountManagement",
+      "name": "Customer Open Close",
+      "shortDescription": "Returns customers that have been opened or closed.",
+      "longDescription": "Returns customers that have been opened or closed during a specified date range. Open and close are based on the parcel and can be filtered by rat"
+    },
+    {
+      "id": 361,
+      "category": "AccountManagement",
+      "name": "Customers In Waiting Status",
+      "shortDescription": "Customers in Waiting Status",
+      "longDescription": "Customers in Waiting Status"
+    },
+    {
+      "id": 238,
+      "category": "AccountManagement",
+      "name": "Deferred Billing Customers",
+      "shortDescription": "A list of customers on a deferred plan.",
+      "longDescription": "Shows a list of customers on a deferred billing plan."
+    },
+    {
+      "id": 255,
+      "category": "AccountManagement",
+      "name": "Penalty Exemptions",
+      "shortDescription": "Customer accounts with penalty exemptions according to Late Charge Template and Exemption Type.",
+      "longDescription": "Shows a list of all customer accounts with penalty exemptions according to Late Charge Template and Exemption Type."
+    },
+    {
+      "id": 326,
+      "category": "AccountManagement",
+      "name": "Closed Customers",
+      "shortDescription": "Redmond Close Customers",
+      "longDescription": "Reports customers who have closed an account within the specified time frame."
+    },
+    {
+      "id": 325,
+      "category": "AccountManagement",
+      "name": "Opened Customers",
+      "shortDescription": "Redmond Open Customers",
+      "longDescription": "Reports customers who have opened an account within the specified time frame."
+    },
+    {
+      "id": 267,
+      "category": "AccountManagement",
+      "name": "Deposit Interest",
+      "shortDescription": "Deposit Interest",
+      "longDescription": "Deposit Interest"
+    },
+    {
+      "id": 268,
+      "category": "AccountManagement",
+      "name": "Contact Customer",
+      "shortDescription": "Detailed customer Contact listings that include Created By, Assigned To, Timestamp, Type, Status, and Notes.",
+      "longDescription": "Shows detailed customer Contact listings that include Created By, Assigned To, Timestamp, Type, Status, and Notes with a summary by contact type, status, and count at the end of the report. This report is for use with Contacts created from the New Contact screen containing these data fields."
+    },
+    {
+      "id": 234,
+      "category": "AccountManagement",
+      "name": "Contacts Listing",
+      "shortDescription": "Log of customer Contacts that include Created Date, Follow Up Date, Completed, and Note only.",
+      "longDescription": "Shows all Contacts with customers, during the given date range, that have been recorded. This report is for use with Contacts created from the New Contact screen containing Date Created, Follow Up/Date, Complete, and Note data fields only."
+    },
+    {
+      "id": 391,
+      "category": "AccountManagement",
+      "name": "Service Call Field Form",
+      "shortDescription": "Service Orders within a chosen date range",
+      "longDescription": "Provides a field form for each incomplete service order based on filters selected."
+    },
+    {
+      "id": 261,
+      "category": "AccountManagement",
+      "name": "Service Calls",
+      "shortDescription": "Service calls scheduled to occur within a chosen date range.",
+      "longDescription": "Shows all service calls scheduled to occur within a chosen date range, based on filters selected."
+    },
+    {
+      "id": 239,
+      "category": "AccountManagement",
+      "name": "EDU Multipliers",
+      "shortDescription": "Total number of all Equivalent Dwelling Units on rates assigned to parcels.",
+      "longDescription": "Shows the total number of all Equivalent Dwelling Units on rates assigned to parcels."
+    },
+    {
+      "id": 249,
+      "category": "AccountManagement",
+      "name": "Parcel Rates",
+      "shortDescription": "Rates assigned to active parcels displayed as multipliers.",
+      "longDescription": "This report outputs an Excel file. For each parcel, the report shows a cross-tab of all active rates for the company. If the parcel is assigned that rate, the value shown is the rate multiplier. Totals at the bottom are a count of all active parcels and the number of active parcels with each rate assigned."
+    },
+    {
+      "id": 434,
+      "category": "AccountManagement",
+      "name": "Parcel Rates with Start/End Dates",
+      "shortDescription": "Parcel Rates with Start/End Dates",
+      "longDescription": "List of customers and their parcel billing rates in a selected date range"
+    },
+    {
+      "id": 257,
+      "category": "AccountManagement",
+      "name": "Rate Counts",
+      "shortDescription": "Shows how many parcels have each rate assigned.",
+      "longDescription": "Shows how many parcels have each rate assigned."
+    },
+    {
+      "id": 414,
+      "category": "AccountManagement",
+      "name": "Seasonal Interruptions",
+      "shortDescription": "Seasonal Interruptions",
+      "longDescription": "Seasonal Interruptions"
+    },
+    {
+      "id": 264,
+      "category": "AccountManagement",
+      "name": "Unused Parcels",
+      "shortDescription": "A list of all parcels that do not have an active customer assigned.",
+      "longDescription": "Shows a list of all parcels that do not have an active customer assigned. Report can display Active, Inactive, or All parcels."
+    },
+    {
+      "id": 392,
+      "category": "AccountManagement",
+      "name": "Payment Plans",
+      "shortDescription": "Payment Plans Report",
+      "longDescription": "Customer Payment Plan Dates and Amounts"
+    },
+    {
+      "id": 102,
+      "category": "AccountManagement",
+      "name": "Rate Details",
+      "shortDescription": "Details of system rates.",
+      "longDescription": "Displays rate names, descriptions, and all details as saved in SYSTEM INFO > Rates."
+    },
+    {
+      "id": 103,
+      "category": "AccountManagement",
+      "name": "User Security Role",
+      "shortDescription": "User Security Role",
+      "longDescription": "User Security Role"
+    },
+    {
+      "id": 121,
+      "category": "Billing&Financials",
+      "name": "One Time Invoice Draft",
+      "shortDescription": "One Time Invoice Draft",
+      "longDescription": "One Time Invoice Draft"
+    },
+    {
+      "id": 452,
+      "category": "Billing&Financials",
+      "name": "Rent Manager History",
+      "shortDescription": "Rent manager job history",
+      "longDescription": "Provides details about the following Rent Manager job runs, based on start and end dates specified: Modify Customers, Synchronize Customers, Synchronize Move Outs, Post Bills."
+    },
+    {
+      "id": 176,
+      "category": "Billing&Financials",
+      "name": "Customer Balance (AS OF)",
+      "shortDescription": "Scvwd - Customer Balance",
+      "longDescription": "Scvwd - Customer Balance"
+    },
+    {
+      "id": 115,
+      "category": "Billing&Financials",
+      "name": "General Revenue Interface Billing Type",
+      "shortDescription": "Scvwd General Revenue Interface Billing Type",
+      "longDescription": "Scvwd General Revenue Interface Billing Type"
+    },
+    {
+      "id": 114,
+      "category": "Billing&Financials",
+      "name": "General Revenue Interface GL",
+      "shortDescription": "Scvwd General Revenue Interface Gl",
+      "longDescription": "Scvwd General Revenue Interface Gl"
+    },
+    {
+      "id": 120,
+      "category": "Billing&Financials",
+      "name": "Invoice Step Summary",
+      "shortDescription": "Scvwd Invoice Step Summary",
+      "longDescription": "Scvwd Invoice Step Summary"
+    },
+    {
+      "id": 154,
+      "category": "Billing&Financials",
+      "name": "Unbilled Accounts",
+      "shortDescription": "A list of all accounts that are unbilled after a given cut-off date.",
+      "longDescription": "Shows a list of all accounts that are unbilled after a given cut-off date. Report also includes unbilled parcels with no active customers."
+    },
+    {
+      "id": 334,
+      "category": "Billing&Financials",
+      "name": "Lien Balances",
+      "shortDescription": "(Accounting) Lien Balances",
+      "longDescription": "This report shows outstanding lien balances by customer as of the selected date."
+    },
+    {
+      "id": 335,
+      "category": "Billing&Financials",
+      "name": "Lien Balances Transactions",
+      "shortDescription": "(Accounting) Lien Balances Transactions",
+      "longDescription": "This report shows all lien balance transactions during the selected period."
+    },
+    {
+      "id": 343,
+      "category": "Billing&Financials",
+      "name": "Financial Collections",
+      "shortDescription": "(Accounting) Westmoreland Co. Financial Collections",
+      "longDescription": "(Accounting) Westmoreland Co. Financial Collections"
+    },
+    {
+      "id": 220,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable",
+      "shortDescription": "Current balances for customers.",
+      "longDescription": "Shows current balances for customers. Can be generated as of a selected date to show balances historically. Includes both posted and unposted payments. Only includes bills that are posted. Does not include deposit related charges or payments."
+    },
+    {
+      "id": 221,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable Aging",
+      "shortDescription": "Customer balances in date range buckets.",
+      "longDescription": "Shows current and past due customer balances in date range buckets. Can be generated as of a selected date to show customer balances historically. Includes both posted and unposted payments. Only includes bills that are posted. Does not include deposit related charges or payments."
+    },
+    {
+      "id": 405,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable Aging by Billing Type",
+      "shortDescription": "Accounts Receivable Aging by Billing Type",
+      "longDescription": "Accounts Receivable Aging by Billing Type"
+    },
+    {
+      "id": 322,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable By Account and Billing Type",
+      "shortDescription": "AR By Acct and Billing Type",
+      "longDescription": "Accounts Receivable as of the current date, grouped by account and billing type, with grand total."
+    },
+    {
+      "id": 324,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable By Account and Billing Type (AS OF)",
+      "shortDescription": "AR By Acct and Billing Type As Of",
+      "longDescription": "Accounts Receivable report grouped by account and billing type, with grand total from selected as of date."
+    },
+    {
+      "id": 327,
+      "category": "Billing&Financials",
+      "name": "REMOVE? Asking stephanie",
+      "shortDescription": "AR By Acct and Billing Type Detail As Of",
+      "longDescription": "Detailed view, Accounts Receivable report grouped by account and billing type, with grand total from selected as of date."
+    },
+    {
+      "id": 409,
+      "category": "Billing&Financials",
+      "name": "AR by Acct and Billing Type (Posted-to-Accounting Activity Only - AS OF)",
+      "shortDescription": "AR By Acct and Billing Type (Posted-to-Accounting Activity Only - As Of)",
+      "longDescription": "Customized Accounts Receivable report as of the selected date (based on the posted-to-accounting date), grouped by account and billing type, and showing only activity that has been posted to accounting."
+    },
+    {
+      "id": 227,
+      "category": "Billing&Financials",
+      "name": "Balances by Date",
+      "shortDescription": "Positive open balances remaining from current balances as of a selected date.",
+      "longDescription": "Displays what a customer currently still owes of the amount their current balance was on the date selected. The balance shown will be lower than what their total balance was on that date if any payments or adjustments have since been applied. Including balances of 0 is optional. Does not include credit balances."
+    },
+    {
+      "id": 432,
+      "category": "Billing&Financials",
+      "name": "Business & Operations Building Permits",
+      "shortDescription": "Building Permit",
+      "longDescription": "Building Permit"
+    },
+    {
+      "id": 247,
+      "category": "Billing&Financials",
+      "name": "Open Invoices by Billing Type (AS OF)",
+      "shortDescription": "Open invoices as of a selected date, grouped by billing type.",
+      "longDescription": "Open balances for all bills, both posted and unposted, as of a selected date, grouped by billing type. Summary shows a total open balance of each billing type. Detail shows open balances, by billing type, per customer with bill date and aging."
+    },
+    {
+      "id": 347,
+      "category": "Billing&Financials",
+      "name": "Building Permits",
+      "shortDescription": "Building Permit",
+      "longDescription": "Building Permit"
+    },
+    {
+      "id": 265,
+      "category": "Billing&Financials",
+      "name": "Write Off",
+      "shortDescription": "Write-offs applied to accounts during a given date range.",
+      "longDescription": "Shows all write-offs applied to accounts during a given date range."
+    },
+    {
+      "id": 402,
+      "category": "Billing&Financials",
+      "name": "Unposted Bill Details",
+      "shortDescription": "Ak Chin Unposted Bill Details",
+      "longDescription": "Ak Chin Unposted Bill Details"
+    },
+    {
+      "id": 403,
+      "category": "Billing&Financials",
+      "name": "Unposted Bill Details - Gallons",
+      "shortDescription": "Ak Chin Unposted Bill Details With Gallons Header",
+      "longDescription": "Ak Chin Unposted Bill Details With Gallons Header"
+    },
+    {
+      "id": 228,
+      "category": "Billing&Financials",
+      "name": "Bill Count by ZIP Code",
+      "shortDescription": "Count of unposted invoices created for each zip code.",
+      "longDescription": "Shows the number of unposted invoices created for each zip code."
+    },
+    {
+      "id": 229,
+      "category": "Billing&Financials",
+      "name": "Bill Register Preview",
+      "shortDescription": "A listing of all unposted bills, generated as a PDF or Excel file.",
+      "longDescription": "A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill."
+    },
+    {
+      "id": 341,
+      "category": "Billing&Financials",
+      "name": "Bill Register Preview With Adjustments",
+      "shortDescription": "A listing of all unposted bills and adjustments.",
+      "longDescription": "A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill, with line item adjustments."
+    },
+    {
+      "id": 356,
+      "category": "Billing&Financials",
+      "name": "Bill Register Preview With Reading Dates",
+      "shortDescription": "A listing of all unposted bills, with reading dates.",
+      "longDescription": "A listing of all unposted bills. Report includes new charges, payments, and adjustments since the last statement date for customers who have at least one unposted bill."
+    },
+    {
+      "id": 230,
+      "category": "Billing&Financials",
+      "name": "Bill Review",
+      "shortDescription": "Individual rate charges billed within a selected date range.",
+      "longDescription": "Shows individual rate charges billed within a selected date range. Includes both posted and unposted bills."
+    },
+    {
+      "id": 345,
+      "category": "Billing&Financials",
+      "name": "Current Charges",
+      "shortDescription": "Current Charges",
+      "longDescription": "Current Charges Report - a variation on the \"Bill Register Preview\" report that excludes payments and previous balances."
+    },
+    {
+      "id": 289,
+      "category": "Billing&Financials",
+      "name": "Final Bills",
+      "shortDescription": "Final bills that have a bill date within the given date range.",
+      "longDescription": "Displays all final bills that have a bill date within the given date range, ordered by customer account number. Includes line item detail of each bill with subtotals. Report concludes with a total count of final bills and a grand total."
+    },
+    {
+      "id": 266,
+      "category": "Billing&Financials",
+      "name": "Invoices",
+      "shortDescription": "All bills in a selected date range.",
+      "longDescription": "Shows all bills in a selected date range. Includes fees for returned payments but does not include adjustments or returned payments."
+    },
+    {
+      "id": 319,
+      "category": "Billing&Financials",
+      "name": "Rate Export",
+      "shortDescription": "Redmond Rate Export Report",
+      "longDescription": "Redmond Rate Export Report"
+    },
+    {
+      "id": 263,
+      "category": "Billing&Financials",
+      "name": "Unbilled Accounts",
+      "shortDescription": "A list of all accounts that are unbilled after a given cut-off date.",
+      "longDescription": "Shows a list of all accounts that are unbilled after a given cut-off date. Report also includes unbilled parcels with no active customers."
+    },
+    {
+      "id": 288,
+      "category": "Billing&Financials",
+      "name": "Voided Bills",
+      "shortDescription": "Voided bills within the chosen date range based on original bill date.",
+      "longDescription": "Includes detailed line items of voided bills, grouped by customer, within the chosen date range based on original bill date."
+    },
+    {
+      "id": 110,
+      "category": "Billing&Financials",
+      "name": "Bill Review",
+      "shortDescription": "Amps Bill Review",
+      "longDescription": "Amps Bill Review"
+    },
+    {
+      "id": 417,
+      "category": "Billing&Financials",
+      "name": "Customer Security Deposit Transactions Original",
+      "shortDescription": "Security deposits received, returned, applied, and refunded within a selected date range - Original version",
+      "longDescription": "Shows security deposits received, returned, applied, and refunded within a selected date range. - Original version"
+    },
+    {
+      "id": 91,
+      "category": "Billing&Financials",
+      "name": "Invoice Detail Recap",
+      "shortDescription": "Invoice recap for customers, in service type groups, for a date range.",
+      "longDescription": "Invoice recap for customers, in service type groups, for a date range."
+    },
+    {
+      "id": 457,
+      "category": "Billing&Financials",
+      "name": "Non-Tax Report",
+      "shortDescription": "Non-Tax Report",
+      "longDescription": "Returns bill and payment amounts for non-tax customers who have payments in the specified date range or bills in the month previous to the specified date range."
+    },
+    {
+      "id": 237,
+      "category": "Billing&Financials",
+      "name": "Customer Security Deposits",
+      "shortDescription": "Security deposits held for customers.",
+      "longDescription": "This report shows security deposits currently held for customers. The Late Charge Template selected is used to find the most recent late charge for each customer. The report can also be processed as of a historical date."
+    },
+    {
+      "id": 215,
+      "category": "Billing&Financials",
+      "name": "Accounting",
+      "shortDescription": "Bills and payments that have been posted to accounting within a selected date range.",
+      "longDescription": "Shows bills and payments, in detail or summary view, that have been posted to accounting within a selected date range."
+    },
+    {
+      "id": 161,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable Aging (AS OF)",
+      "shortDescription": "Invoices Summary",
+      "longDescription": "Invoices Summary"
+    },
+    {
+      "id": 379,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable Aging - XLS",
+      "shortDescription": "Accounts Receivable Aging",
+      "longDescription": "Accounts Receivable Aging"
+    },
+    {
+      "id": 133,
+      "category": "Billing&Financials",
+      "name": "Accounts Receivable (AS OF)",
+      "shortDescription": "Accounts Receivable As Of",
+      "longDescription": "Accounts Receivable As Of"
+    },
+    {
+      "id": 226,
+      "category": "Billing&Financials",
+      "name": "Adjustments",
+      "shortDescription": "Adjustments in a chosen date range grouped by billing type, account category, or account number.",
+      "longDescription": "Shows all adjustments in a chosen date range grouped by billing type, account category, or account number. Summary shows the sum of all adjustments. Detail shows individual adjustments."
+    },
+    {
+      "id": 127,
+      "category": "Billing&Financials",
+      "name": "Bill Exception",
+      "shortDescription": "Bill Exception",
+      "longDescription": "Bill Exception"
+    },
+    {
+      "id": 236,
+      "category": "Billing&Financials",
+      "name": "Customer Security Deposit Transactions",
+      "shortDescription": "Security deposits received, returned, applied, and refunded within a selected date range.",
+      "longDescription": "Shows security deposits received, returned, applied, and refunded within a selected date range."
+    },
+    {
+      "id": 211,
+      "category": "Billing&Financials",
+      "name": "Directors",
+      "shortDescription": "Directors",
+      "longDescription": "Overview of usage provided, services billed, and accounts receivable."
+    },
+    {
+      "id": 240,
+      "category": "Billing&Financials",
+      "name": "G/L by Billing Type Summary",
+      "shortDescription": "Revenue grouped by billing type, then revenue account, then A/R account.",
+      "longDescription": "A summary of revenue grouped by billing type, then revenue account, then A/R account."
+    },
+    {
+      "id": 241,
+      "category": "Billing&Financials",
+      "name": "G/L Transaction Summary",
+      "shortDescription": "Revenue grouped by date, then billing type, then revenue account.",
+      "longDescription": "Revenue grouped by date, then billing type, then revenue account. Includes a detailed Summary by Date and an abridged Summary by Revenue Account."
+    },
+    {
+      "id": 209,
+      "category": "Billing&Financials",
+      "name": "Ground Water Invoice",
+      "shortDescription": "Ground Water Invoice",
+      "longDescription": "Ground Water Invoice"
+    },
+    {
+      "id": 123,
+      "category": "Billing&Financials",
+      "name": "Invoices Detail",
+      "shortDescription": "Invoices Detail",
+      "longDescription": "Invoices Detail"
+    },
+    {
+      "id": 122,
+      "category": "Billing&Financials",
+      "name": "Invoices Summary",
+      "shortDescription": "Invoices Summary",
+      "longDescription": "Invoices Summary"
+    },
+    {
+      "id": 242,
+      "category": "Billing&Financials",
+      "name": "Journal Entries",
+      "shortDescription": "Journal entries to be made based on debits and credits for the selected date range.",
+      "longDescription": "Journal entries to be made based on debits and credits for the selected date range. The journal entries in this report are appropriate to enter to QuickBooks or similar program. Bills and payments are included regardless of being posted to accounting, but must be posted to customers before appearing in this report."
+    },
+    {
+      "id": 271,
+      "category": "Billing&Financials",
+      "name": "Monthly Activities",
+      "shortDescription": "Overview of usage provided, services billed, and accounts receivable.",
+      "longDescription": "Overview of usage provided, services billed, and accounts receivable."
+    },
+    {
+      "id": 418,
+      "category": "Billing&Financials",
+      "name": "REMOVE?",
+      "shortDescription": "Overview of usage provided, services billed, and accounts receivable. Simplified version",
+      "longDescription": "Overview of usage provided, services billed, and accounts receivable. Simplified version"
+    },
+    {
+      "id": 136,
+      "category": "Billing&Financials",
+      "name": "Multi-line Adjustments",
+      "shortDescription": "Multi-line Adjustments",
+      "longDescription": "Multi-line Adjustments"
+    },
+    {
+      "id": 377,
+      "category": "Billing&Financials",
+      "name": "Open Deposit Charges",
+      "shortDescription": "Open Deposit Charges",
+      "longDescription": "Open Deposit Charges"
+    },
+    {
+      "id": 135,
+      "category": "Billing&Financials",
+      "name": "Open Invoice",
+      "shortDescription": "Open Invoice",
+      "longDescription": "Open Invoice"
+    },
+    {
+      "id": 167,
+      "category": "Billing&Financials",
+      "name": "Open Invoices Detail",
+      "shortDescription": "Open Invoices Detail - Scvwd",
+      "longDescription": "Open Invoices Detail - Scvwd"
+    },
+    {
+      "id": 139,
+      "category": "Billing&Financials",
+      "name": "Open Invoices Summary",
+      "shortDescription": "All open invoices.",
+      "longDescription": "All open invoices."
+    },
+    {
+      "id": 256,
+      "category": "Billing&Financials",
+      "name": "Billed Rate Code Summary",
+      "shortDescription": "Summary by rate code of usage and revenue.",
+      "longDescription": "Summary by rate code of usage and revenue."
+    },
+    {
+      "id": 259,
+      "category": "Billing&Financials",
+      "name": "Revenue",
+      "shortDescription": "All bills, posted and unposted, from a chosen date range.",
+      "longDescription": "All bills, including posted and unposted, from a chosen date range. Summary shows the sum of all bills. Detail shows each individual bill. Does not include adjustments or returned payments. Does include fees for returned payments."
+    },
+    {
+      "id": 177,
+      "category": "Metering&Consumption",
+      "name": "Water Production",
+      "shortDescription": "Scvwd - Water Production",
+      "longDescription": "Scvwd - Water Production"
+    },
+    {
+      "id": 376,
+      "category": "Metering&Consumption",
+      "name": "Meter Reading Consumption",
+      "shortDescription": "Meter Reading Consumption",
+      "longDescription": "This report shows all metered consumption for a selected date range based on end reading. The summary report shows the sum of consumption for all meters, whereas the detail report shows consumption for each meter individually."
+    },
+    {
+      "id": 456,
+      "category": "Metering&Consumption",
+      "name": "Meter Re-Reads (Formula)",
+      "shortDescription": "Lists unposted meter reads with characteristics outside of set thresholds.",
+      "longDescription": "Lists unposted meter reads with characteristics outside of set thresholds. Available in Route/Book/Stop, Account Number, or Address order. Includes a column to record a new, updated reading."
+    },
+    {
+      "id": 166,
+      "category": "Metering&Consumption",
+      "name": "Meter Usage",
+      "shortDescription": "Meter Usage - Hoschton",
+      "longDescription": "Meter Usage - Hoschton"
+    },
+    {
+      "id": 355,
+      "category": "Metering&Consumption",
+      "name": "Routes",
+      "shortDescription": "Creates a report for manually recording meter readings.",
+      "longDescription": "Creates a report for manually recording meter readings."
+    },
+    {
+      "id": 314,
+      "category": "Metering&Consumption",
+      "name": "Backflow Export",
+      "shortDescription": "Redmond Backflow Export Report",
+      "longDescription": "Redmond Backflow Export Report"
+    },
+    {
+      "id": 125,
+      "category": "Metering&Consumption",
+      "name": "Backflow Devices Test Dates",
+      "shortDescription": "Lists backflow devices test dates, both past and future.",
+      "longDescription": "Provides backflow devices test dates, both historical and future, as well as location and device details."
+    },
+    {
+      "id": 390,
+      "category": "Metering&Consumption",
+      "name": "Production Breakdown by Date",
+      "shortDescription": "(PVC) Production Breakdown by Date",
+      "longDescription": "(PVC) Production Breakdown by Date"
+    },
+    {
+      "id": 389,
+      "category": "Metering&Consumption",
+      "name": "Turnout Consumption Breakdown",
+      "shortDescription": "Turnout Consumption",
+      "longDescription": "Turnout Consumption"
+    },
+    {
+      "id": 387,
+      "category": "Metering&Consumption",
+      "name": "Turnout Listing",
+      "shortDescription": "Turnout Listing",
+      "longDescription": "Turnout Listing"
+    },
+    {
+      "id": 461,
+      "category": "Metering&Consumption",
+      "name": "Consumption By Tier",
+      "shortDescription": "Report shows billed consumption by rate and tier, for all tiers that have a charge > 0.",
+      "longDescription": "This report shows billed consumption by rate and tier for all tiers that have a charge amount > 0 in xls format. Consumption amounts that result in no charge to the customer are excluded."
+    },
+    {
+      "id": 415,
+      "category": "Metering&Consumption",
+      "name": "Electric Consumption Report",
+      "shortDescription": "Electric Consumption",
+      "longDescription": "Customized Electric Consumption report showing number of customers, base charges, electric consumption and total amount billed by individual electric rate code, filterable by account type and category."
+    },
+    {
+      "id": 106,
+      "category": "Metering&Consumption",
+      "name": "Annual Customer Consumption History",
+      "shortDescription": "NRG Annual Customer Consumption History",
+      "longDescription": "NRG Annual Customer Consumption History"
+    },
+    {
+      "id": 107,
+      "category": "Metering&Consumption",
+      "name": "Meter Usage (AS OF)",
+      "shortDescription": "NRG Meter Usage",
+      "longDescription": "NRG Meter Usage"
+    },
+    {
+      "id": 131,
+      "category": "Metering&Consumption",
+      "name": "Water Loss",
+      "shortDescription": "Water Loss",
+      "longDescription": "Water Loss"
+    },
+    {
+      "id": 233,
+      "category": "Metering&Consumption",
+      "name": "Consumption",
+      "shortDescription": "Billed consumption in a given date range for all customers.",
+      "longDescription": "Shows billed consumption in a given date range based on either end reading date or bill date for all customers. Report only shows consumption associated with posted bills; consumption related to unposted bills is not included."
+    },
+    {
+      "id": 294,
+      "category": "Metering&Consumption",
+      "name": "CROA Meter Reading Consumption",
+      "shortDescription": "CROA parcel metered consumption for a selected date range.",
+      "longDescription": "All CROA parcel metered consumption for a selected date range based on end reading. Summary shows the sum of consumption for all meters. Detail shows consumption of each meter individually. NOTE: The Consumption From/To fields do not need to be filled in if restrictions on returned records are not necessary, and the report will show all records. If a value is entered only in the Consumption From field, the report will include results greater than and equal to the entry. If a value is entered only in the Consumption To field, the report will show results that are less than and equal to the entry. They may also both be used, and everything in between and including the inputted values will be returned on the report."
+    },
+    {
+      "id": 272,
+      "category": "Metering&Consumption",
+      "name": "Meter Re-Reads",
+      "shortDescription": "Lists unposted meter reads with characteristics outside of set thresholds.",
+      "longDescription": "Lists unposted meter reads with characteristics outside of set thresholds. Available in Route/Book/Stop, Account Number, or Address order. Includes a column to record a new, updated reading. NOTE: \"High Variance\" or \"Low Variance\" must be selected from the \"Warning\" dropdown list before entering the variance percentage."
+    },
+    {
+      "id": 243,
+      "category": "Metering&Consumption",
+      "name": "Meter Reading Consumption",
+      "shortDescription": "Metered consumption for a selected date range.",
+      "longDescription": "All metered consumption for a selected date range based on end reading. Summary shows the sum of consumption for all meters. Detail shows consumption of each meter individually.\n\nNOTE: The Consumption From/To fields do not need to be filled in if restrictions on returned records are not necessary, and the report will show all records. If a value is entered only in the Consumption From field, the report will include results greater than and equal to the entry. If a value is entered only in the Consumption To field, the report will show results that are less than and equal to the entry. They may also both be used, and everything in between and including the inputted values will be returned on the report."
+    },
+    {
+      "id": 304,
+      "category": "Metering&Consumption",
+      "name": "Meter Reading History",
+      "shortDescription": "Meter Reading History",
+      "longDescription": "Displays the reading history of meters, grouped by customer, account number, and meter."
+    },
+    {
+      "id": 129,
+      "category": "Metering&Consumption",
+      "name": "Meter Reading Review",
+      "shortDescription": "Meter Reading Review",
+      "longDescription": "Meter Reading Review"
+    },
+    {
+      "id": 367,
+      "category": "Metering&Consumption",
+      "name": "Meter Variance",
+      "shortDescription": "Lists meters whose readings fall above or below the variance thresholds",
+      "longDescription": "Lists meters whose readings fall above or below the variance thresholds. Values entered represent the percent difference between current unposted read with the last posted read. High Variance Threshold can be entered as any positive whole number. Low variance threshold may be entered as a number between 0-99."
+    },
+    {
+      "id": 260,
+      "category": "Metering&Consumption",
+      "name": "Routes",
+      "shortDescription": "Creates a report for manually recording meter readings.",
+      "longDescription": "Creates a report for manually recording meter readings. Shows account and meter information for each meter with an empty column for writing new end readings. By default, it includes all active meters belonging to active parcels regardless of an active customer being present."
+    },
+    {
+      "id": 413,
+      "category": "Metering&Consumption",
+      "name": "Routes (3 Decimal Places)",
+      "shortDescription": "Creates a report for manually recording meter readings.",
+      "longDescription": "Creates a report for manually recording meter readings. Shows account and meter information for each meter with an empty column for writing new end readings. By default, it includes all active meters belonging to active parcels regardless of an active customer being present."
+    },
+    {
+      "id": 396,
+      "category": "Metering&Consumption",
+      "name": "Unposted Meter Readings",
+      "shortDescription": "Unposted Meter Readings",
+      "longDescription": "Unposted Meter Readings"
+    },
+    {
+      "id": 380,
+      "category": "Metering&Consumption",
+      "name": "Zero Consumption Meters",
+      "shortDescription": "Zero Usage Report",
+      "longDescription": "Zero Usage Report"
+    },
+    {
+      "id": 117,
+      "category": "Payments",
+      "name": "Cash Deposited",
+      "shortDescription": "Scvwd Cash Deposited",
+      "longDescription": "Scvwd Cash Deposited"
+    },
+    {
+      "id": 116,
+      "category": "Payments",
+      "name": "Cash Receipts Applied Details",
+      "shortDescription": "Scvwd Cash Receipts Applied Details",
+      "longDescription": "Scvwd Cash Receipts Applied Details"
+    },
+    {
+      "id": 169,
+      "category": "Payments",
+      "name": "Auto Pay Customers",
+      "shortDescription": "A list of all auto pay customers with active, pending, or canceled statuses of enrollment.",
+      "longDescription": "Shows a list of all auto pay customers with active, pending, or canceled statuses of enrollment."
+    },
+    {
+      "id": 385,
+      "category": "Payments",
+      "name": "Payment Allocation Changes",
+      "shortDescription": "Payment Allocation Changes",
+      "longDescription": "Payment Allocation Changes"
+    },
+    {
+      "id": 183,
+      "category": "Payments",
+      "name": "Batch Transaction",
+      "shortDescription": "SUMI - Batch Transaction",
+      "longDescription": "SUMI - Batch Transaction"
+    },
+    {
+      "id": 162,
+      "category": "Payments",
+      "name": "Payment Allocation Changes",
+      "shortDescription": "Payment Allocation Changes",
+      "longDescription": "Payment Allocation Changes"
+    },
+    {
+      "id": 153,
+      "category": "Payments",
+      "name": "Payments by Payment Type",
+      "shortDescription": "Nitor Payments by Payment Type",
+      "longDescription": "Payments grouped by Payment Type."
+    },
+    {
+      "id": 218,
+      "category": "Payments",
+      "name": "Payments Detail",
+      "shortDescription": "Payments Detail",
+      "longDescription": "Payments Detail"
+    },
+    {
+      "id": 163,
+      "category": "Payments",
+      "name": "Unallocated Payments",
+      "shortDescription": "Invoices Summary",
+      "longDescription": "Invoices Summary"
+    },
+    {
+      "id": 232,
+      "category": "Payments",
+      "name": "Cash Receipts",
+      "shortDescription": "Payments, both posted and unposted.",
+      "longDescription": "Payments, both posted and unposted, by account category and then by account type and billing type. Detail report shows payments per customer, per billing type. Summary report shows amounts per billing type."
+    },
+    {
+      "id": 354,
+      "category": "Payments",
+      "name": "IVR Payments By Date",
+      "shortDescription": "IVR Payments in a selected date range.",
+      "longDescription": "All IVR payments within a selected date range. Summary includes sections showing payments by Payment Date, by Billing Type, and by Payment Type (Billing Type per Payment Type). Detail displays payments per customer, grouped and ordered by Payment Date."
+    },
+    {
+      "id": 245,
+      "category": "Payments",
+      "name": "Online Payment Deposit Reconciliation",
+      "shortDescription": "Online credit card payment batches processed within a given date range.",
+      "longDescription": "Shows online credit card payment batches processed within the given date range. \"Summary\" shows amounts grouped by billing type and sorted by batch ID. \"Deposits\" shows a total amount grouped by batch ID. \"Detail\" shows each customer's deposit amount, fee amount, and total payment, sorted by batch ID and customer account number."
+    },
+    {
+      "id": 244,
+      "category": "Payments",
+      "name": "Online Payments",
+      "shortDescription": "Online payments within a selected date range, sorted by date and account number.",
+      "longDescription": "All online payments within a selected date range based on payment date, sorted by date and account number. NOTE: Applied Amount column is only available for payments made after 10/1/2015."
+    },
+    {
+      "id": 151,
+      "category": "Payments",
+      "name": "Online Payments - Nitor",
+      "shortDescription": "Nitor Online Payments",
+      "longDescription": "Nitor Online Payments"
+    },
+    {
+      "id": 248,
+      "category": "Payments",
+      "name": "Overpayments",
+      "shortDescription": "Payments not currently applied to a bill.",
+      "longDescription": "Shows non-deposit payments that are not currently applied to a bill on a customer account. Summary shows the sum of all overpayments by billing type. Detail shows each customer with an overpayment and can be grouped by billing type if desired"
+    },
+    {
+      "id": 251,
+      "category": "Payments",
+      "name": "Payment Reconciliation Batches",
+      "shortDescription": "Batches of payments posted in Reconcile Payments within a chosen date range.",
+      "longDescription": "All batches of payments posted in Reconcile Payments within a chosen date range. Grouped by batch date and Received By."
+    },
+    {
+      "id": 352,
+      "category": "Payments",
+      "name": "Payment Reconciliation Batches Alt",
+      "shortDescription": "Alternate view of Payment Reconciliation Batches",
+      "longDescription": "\nAlternate view of Payment Reconciliation Batches\n"
+    },
+    {
+      "id": 124,
+      "category": "Payments",
+      "name": "Payments",
+      "shortDescription": "Payments",
+      "longDescription": "Payments"
+    },
+    {
+      "id": 252,
+      "category": "Payments",
+      "name": "Payments by Billing Type",
+      "shortDescription": "Payments in a specified date range grouped by billing type.",
+      "longDescription": "All payments in a specified date range grouped by billing type. Summary shows payment amounts by account type, then account category, then billing type. Detail displays payments for each customer grouped by account type, then account category, then billing type."
+    },
+    {
+      "id": 253,
+      "category": "Payments",
+      "name": "Payments by Date",
+      "shortDescription": "Payments in a selected date range.",
+      "longDescription": "All payments in a selected date range. Summary includes sections showing payments by Payment Date, by Billing Type, and by Payment Type (Billing Type per Payment Type). Detail displays payments per customer, grouped and ordered by Payment Date."
+    },
+    {
+      "id": 254,
+      "category": "Payments",
+      "name": "Payments by Payment Type",
+      "shortDescription": "Payments within a selected date range grouped by payment type.",
+      "longDescription": "All payments within a selected date range grouped by payment type. Summary shows payments by payment type and billing type. Detail lists individual payments by payment type ordered by date then account number."
+    },
+    {
+      "id": 331,
+      "category": "Payments",
+      "name": "Payments by Payment Type With Deposits",
+      "shortDescription": "Payments within a selected date range grouped by payment type, with deposits section.",
+      "longDescription": "All payments within a selected date range grouped by payment type. Summary shows payments by payment type and billing type. Detail lists individual payments by payment type ordered by date then account number. Includes a deposits section post-summary."
+    },
+    {
+      "id": 258,
+      "category": "Payments",
+      "name": "Returned Payments",
+      "shortDescription": "Returned payments within a date range.",
+      "longDescription": "Shows returned payments within a selected date range. Also displays any returned payment fees applied to customers. Bill Date signifies the day the payment was returned in the system and corresponding debits created."
+    },
+    {
+      "id": 203,
+      "category": "Payments",
+      "name": "Unapplied Payments",
+      "shortDescription": "Payments that have not been applied or that are applied to an unposted bill.",
+      "longDescription": "Payments that have not been applied or that are applied to an unposted bill."
+    }
+  ],
+  "categories": [
+    "AccountManagement",
+    "Billing&Financials",
+    "Metering&Consumption",
+    "Payments"
+  ]
+}
