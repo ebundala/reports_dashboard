@@ -308,6 +308,9 @@ createApp({
         );
       }
       
+      // Sort alphabetically by name
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+      
       this.filteredReports = filtered;
     }
   }
