@@ -70,9 +70,28 @@
 </div>
 </div>
 </header>
-<main class="flex-grow mx-auto px-4 lg:px-6 py-8 container" id="app">
-<h1 class="mb-8 font-bold text-gray-800 dark:text-gray-100 text-3xl">Reports</h1>
-<div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <main class="flex-grow mx-auto px-4 lg:px-6 py-8 container" id="app">
+<div class="flex items-center gap-6 mb-6">
+<!-- <h1 class="font-bold text-gray-800 dark:text-gray-100 text-3xl">{{ activeView === 'reports' ? 'Reports' : 'Analytics' }}</h1> -->
+<nav class="flex items-center">
+<button 
+  @click="activeView = 'reports'" 
+  :class="activeView === 'reports' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Reports
+</button>
+<div class="bg-gray-300 dark:bg-gray-600 w-px h-8"></div>
+<button 
+  @click="activeView = 'analytics'" 
+  :class="activeView === 'analytics' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Analytics
+</button>
+</nav>
+</div>
+
+<!-- Reports View -->
+<div v-show="activeView === 'reports'" class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
 <div v-for="category in categoryData" :key="category.name" class="space-y-6">
 <div class="flex items-center pb-2 border-gray-300 dark:border-gray-600 border-b">
 <span class="mr-2 text-primary material-icons">{{ category.icon }}</span>
@@ -92,6 +111,20 @@
 <h3 class="font-semibold text-primary">{{ report.name }}</h3>
 <p class="text-gray-500 dark:text-gray-400 text-sm">{{ report.shortDescription }}</p>
 </div>
+</div>
+</div>
+
+<!-- Analytics View -->
+<div v-show="activeView === 'analytics'" class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+<div 
+  v-for="item in analyticsItems" 
+  :key="item.id" 
+  class="space-y-3 bg-white dark:bg-slate-800 hover:shadow-lg p-6 border border-gray-200 dark:border-gray-700 rounded transition-shadow cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="text-primary material-icons">{{ item.icon }}</span>
+<h3 class="font-semibold text-primary text-xl">{{ item.name }}</h3>
+</div>
+<p class="text-gray-600 dark:text-gray-400">{{ item.description }}</p>
 </div>
 </div>
 </main>
@@ -126,8 +159,29 @@ const reportsData = {"reports":[{"id":346,"category":"AccountManagement","name":
 createApp({
   data() {
     return {
+      activeView: 'reports',
       reports: reportsData.reports,
       categories: reportsData.categories,
+      analyticsItems: [
+        {
+          id: 1,
+          name: 'Billing',
+          description: 'Comprehensive billing analytics including revenue trends, invoice analysis, and payment patterns across all customer segments.',
+          icon: 'assessment'
+        },
+        {
+          id: 2,
+          name: 'Metered Usage',
+          description: 'Detailed consumption analytics covering usage patterns, peak demand analysis, and conservation metrics for all metered services.',
+          icon: 'show_chart'
+        },
+        {
+          id: 3,
+          name: 'Payments',
+          description: 'Payment analytics dashboard with transaction trends, collection rates, payment method analysis, and outstanding balance tracking.',
+          icon: 'account_balance'
+        }
+      ],
       categoryData: [
         {
           name: 'AccountManagement',
