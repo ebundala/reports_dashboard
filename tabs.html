@@ -65,8 +65,26 @@
 </div>
 </header>
 <main id="app" class="flex-grow mx-auto px-4 py-8 container">
-<h1 class="mb-8 font-bold text-slate-800 dark:text-white text-4xl">Reports</h1>
-<div class="w-full">
+<div class="flex items-center gap-6 mb-8">
+<nav class="flex items-center">
+<button 
+  @click="activeView = 'reports'" 
+  :class="activeView === 'reports' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Reports
+</button>
+<div class="bg-slate-300 dark:bg-slate-600 w-px h-8"></div>
+<button 
+  @click="activeView = 'analytics'" 
+  :class="activeView === 'analytics' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Analytics
+</button>
+</nav>
+</div>
+
+<!-- Reports View -->
+<div v-show="activeView === 'reports'" class="w-full">
 <div class="flex flex-wrap -mx-4 sm:-mx-0 mb-6 border-slate-200 dark:border-slate-700 border-b">
 <button :class="{ 'border-primary text-primary dark:text-primary': activeTab === 'all-reports', 'border-transparent text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary': activeTab !== 'all-reports' }" @click="activeTab = 'all-reports'" class="flex items-center space-x-2 px-6 py-3 border-b-2 font-semibold text-lg whitespace-nowrap transition-colors duration-200">
 <span class="text-xl material-icons-outlined">view_list</span>
@@ -95,7 +113,7 @@
 <input v-model="searchQuery" @input="filterReports" class="bg-white dark:bg-slate-800 py-2 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-full max-w-sm" placeholder="Filter reports in this category..." type="text"/>
 </div>
 <div class="space-y-6" v-show="activeTab === 'all-reports'">
-<div class="flex justify-end">
+<div class="flex justify-start">
 <div class="relative pr-2">
 <span class="top-1/2 left-3 absolute text-slate-400 -translate-y-1/2 material-icons-outlined">search</span>
 <input v-model="searchQuery" @input="filterReports" class="bg-white dark:bg-slate-800 py-2 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary w-full max-w-sm" placeholder="Filter all reports..." type="text"/>
@@ -164,6 +182,22 @@
 </div>
 </div>
 </div>
+
+
+<!-- Analytics View -->
+<div v-show="activeView === 'analytics'" class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+<div 
+  v-for="item in analyticsItems" 
+  :key="item.id" 
+  class="space-y-3 bg-white dark:bg-slate-800 hover:shadow-lg p-6 border border-slate-200 dark:border-slate-700 rounded-lg transition-shadow cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="text-primary text-3xl material-icons-outlined">{{ item.icon }}</span>
+<h3 class="font-semibold text-primary text-xl">{{ item.name }}</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400">{{ item.description }}</p>
+</div>
+</div>
+</div>
 </main>
 <footer class="bg-white dark:bg-slate-800 mt-auto border-slate-200 dark:border-slate-700 border-t">
 <div class="mx-auto px-4 py-4 text-slate-500 dark:text-slate-400 text-xs container">
@@ -219,8 +253,29 @@ const reportsData = {"reports":[{"id":346,"category":"AccountManagement","name":
 createApp({
   data() {
     return {
+      activeView: 'reports',
       reports: reportsData.reports,
       categories: reportsData.categories,
+      analyticsItems: [
+        {
+          id: 1,
+          name: 'Billing',
+          description: 'Comprehensive billing analytics including revenue trends, invoice analysis, and payment patterns across all customer segments.',
+          icon: 'assessment'
+        },
+        {
+          id: 2,
+          name: 'Metered Usage',
+          description: 'Detailed consumption analytics covering usage patterns, peak demand analysis, and conservation metrics for all metered services.',
+          icon: 'show_chart'
+        },
+        {
+          id: 3,
+          name: 'Payments',
+          description: 'Payment analytics dashboard with transaction trends, collection rates, payment method analysis, and outstanding balance tracking.',
+          icon: 'account_balance'
+        }
+      ],
       activeTab: 'all-reports',
       searchQuery: '',
       filteredReports: []
