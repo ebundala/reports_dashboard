@@ -71,7 +71,8 @@
 </div>
 </header>
     <main class="flex-grow mx-auto px-4 lg:px-6 py-8 container" id="app">
-<div class="flex items-center gap-6 mb-6">
+<div class="mb-6">
+<div class="flex items-center gap-6 mb-4">
 <!-- <h1 class="font-bold text-gray-800 dark:text-gray-100 text-3xl">{{ activeView === 'reports' ? 'Reports' : 'Analytics' }}</h1> -->
 <nav class="flex items-center">
 <button 
@@ -90,13 +91,34 @@
 </nav>
 </div>
 
+<!-- Search Bar -->
+<div v-show="activeView === 'reports'" class="max-w-2xl">
+<div class="relative">
+<span class="top-1/2 left-3 absolute text-gray-400 -translate-y-1/2 transform material-icons">search</span>
+<input 
+  v-model="searchQuery"
+  @input="searchReports"
+  type="text" 
+  placeholder="Search reports by title or description..."
+  class="dark:bg-slate-800 py-2 pr-4 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary w-full dark:text-gray-100">
+</div>
+</div>
+</div>
+
 <!-- Reports View -->
-<div v-show="activeView === 'reports'" class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-<div v-for="category in categoryData" :key="category.name" class="space-y-6">
+<div v-show="activeView === 'reports'">
+<div v-if="filteredReports.length === 0" class="py-12 text-center">
+<span class="text-gray-400 text-6xl material-icons">search_off</span>
+<p class="mt-4 text-gray-500 dark:text-gray-400 text-lg">No reports found</p>
+</div>
+<div v-else class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+<div v-for="category in categoryData" :key="category.name">
+<div v-if="getCategoryReports(category.name).length >= 0" class="space-y-4">
 <div class="flex items-center pb-2 border-gray-300 dark:border-gray-600 border-b">
 <span class="mr-2 text-primary material-icons">{{ category.icon }}</span>
 <h2 class="font-semibold text-gray-800 dark:text-gray-100 text-lg">{{ category.displayName }}</h2>
 </div>
+<div class="space-y-3">
 <div 
   v-for="report in getCategoryReports(category.name)" 
   :key="report.id" 
@@ -104,12 +126,8 @@
 <h3 class="font-semibold text-primary">{{ report.name }}</h3>
 <p class="text-gray-500 dark:text-gray-400 text-sm">{{ report.shortDescription }}</p>
 </div>
-<div 
-  v-for="report in getCategoryReports(category.name)" 
-  :key="report.id" 
-  class="space-y-1 bg-white dark:bg-slate-800 hover:shadow-lg p-4 border border-gray-200 dark:border-gray-700 rounded transition-shadow cursor-pointer">
-<h3 class="font-semibold text-primary">{{ report.name }}</h3>
-<p class="text-gray-500 dark:text-gray-400 text-sm">{{ report.shortDescription }}</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -160,7 +178,9 @@ createApp({
   data() {
     return {
       activeView: 'reports',
+      searchQuery: '',
       reports: reportsData.reports,
+      filteredReports: reportsData.reports,
       categories: reportsData.categories,
       analyticsItems: [
         {
@@ -208,9 +228,21 @@ createApp({
   },
   methods: {
     getCategoryReports(categoryName) {
-      return this.reports
+      return this.filteredReports
         .filter(report => report.category === categoryName)
         .sort((a, b) => a.name.localeCompare(b.name));
+    },
+    searchReports() {
+      if (this.searchQuery.trim() === '') {
+        this.filteredReports = this.reports;
+      } else {
+        const query = this.searchQuery.toLowerCase();
+        this.filteredReports = this.reports.filter(report => 
+          report.name.toLowerCase().includes(query) ||
+          report.shortDescription.toLowerCase().includes(query) ||
+          report.longDescription.toLowerCase().includes(query)
+        );
+      }
     }
   }
 }).mount('#app');
