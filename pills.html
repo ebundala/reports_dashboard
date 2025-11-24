@@ -66,7 +66,26 @@
 </div>
 </header>
 <main id="app" class="flex-grow mx-auto px-4 py-8 container">
-<h1 class="mb-8 font-bold text-slate-800 dark:text-white text-4xl">Reports</h1>
+<div class="flex items-center gap-6 mb-8">
+<nav class="flex items-center">
+<button 
+  @click="activeView = 'reports'" 
+  :class="activeView === 'reports' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Reports
+</button>
+<div class="bg-slate-300 dark:bg-slate-600 w-px h-8"></div>
+<button 
+  @click="activeView = 'analytics'" 
+  :class="activeView === 'analytics' ? 'bg-white text-primary shadow-md' : 'bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'"
+  class="px-6 py-2 font-bold text-3xl transition-all">
+  Analytics
+</button>
+</nav>
+</div>
+
+<!-- Reports View -->
+<div v-show="activeView === 'reports'">
 <div class="mb-6">
 <label class="sr-only" for="search-reports">Search reports</label>
 <div class="relative">
@@ -93,6 +112,36 @@
 <span class="self-start bg-slate-100 dark:bg-slate-700 mt-3 px-2 py-0.5 rounded-full text-slate-500 dark:text-slate-400 text-xs">{{ getCategoryDisplayName(report.category) }}</span>
 </a>
 </div>
+</div>
+
+<!-- Analytics View -->
+<div v-show="activeView === 'analytics'">
+<div class="mb-6">
+<label class="sr-only" for="search-analytics">Search analytics</label>
+<div class="relative">
+<div class="left-0 absolute inset-y-0 flex items-center pl-3 pointer-events-none">
+<span class="text-slate-400 material-icons-outlined">search</span>
+</div>
+<input v-model="analyticsSearchQuery" @input="filterAnalytics" class="bg-white dark:bg-slate-800 py-3 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-700 rounded-lg focus:ring-primary w-full text-slate-900 dark:text-white text-lg placeholder-slate-400" id="search-analytics" placeholder="Search analytics by title or description..." type="text"/>
+</div>
+</div>
+<div v-if="filteredAnalytics.length === 0" class="py-12 text-center">
+<span class="mb-4 text-slate-300 dark:text-slate-600 text-6xl material-icons-outlined">search_off</span>
+<p class="text-slate-500 dark:text-slate-400 text-xl">No analytics found matching your criteria.</p>
+</div>
+<div v-else class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+<div 
+  v-for="item in filteredAnalytics" 
+  :key="item.id" 
+  class="space-y-3 bg-white dark:bg-slate-800 hover:shadow-lg p-6 border border-slate-200 dark:border-slate-700 rounded-lg transition-shadow cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="text-primary text-3xl material-icons-outlined">{{ item.icon }}</span>
+<h3 class="font-semibold text-primary text-xl">{{ item.name }}</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400">{{ item.description }}</p>
+</div>
+</div>
+</div>
 </main>
 <footer class="bg-white dark:bg-slate-800 mt-auto border-slate-200 dark:border-slate-700 border-t">
 <div class="mx-auto px-4 py-4 text-slate-500 dark:text-slate-400 text-xs container">
@@ -109,8 +158,31 @@ const reportsData = {"reports":[{"id":346,"category":"AccountManagement","name":
 createApp({
   data() {
     return {
+      activeView: 'reports',
       reports: reportsData.reports,
       categories: reportsData.categories,
+      analyticsItems: [
+        {
+          id: 1,
+          name: 'Billing',
+          description: 'Comprehensive billing analytics including revenue trends, invoice analysis, and payment patterns across all customer segments.',
+          icon: 'assessment'
+        },
+        {
+          id: 2,
+          name: 'Metered Usage',
+          description: 'Detailed consumption analytics covering usage patterns, peak demand analysis, and conservation metrics for all metered services.',
+          icon: 'show_chart'
+        },
+        {
+          id: 3,
+          name: 'Payments',
+          description: 'Payment analytics dashboard with transaction trends, collection rates, payment method analysis, and outstanding balance tracking.',
+          icon: 'account_balance'
+        }
+      ],
+      analyticsSearchQuery: '',
+      filteredAnalytics: [],
       categoryData: [
         { name: 'AccountManagement', displayName: 'Account Management' },
         { name: 'Billing&Financials', displayName: 'Billing & Financials' },
@@ -124,6 +196,7 @@ createApp({
   },
   mounted() {
     this.filterReports();
+    this.filterAnalytics();
   },
   methods: {
     selectCategory(category) {
@@ -149,6 +222,20 @@ createApp({
       }
       
       this.filteredReports = filtered;
+    },
+    filterAnalytics() {
+      let filtered = this.analyticsItems;
+      
+      // Filter by search query
+      if (this.analyticsSearchQuery.trim()) {
+        const query = this.analyticsSearchQuery.toLowerCase();
+        filtered = filtered.filter(item => 
+          item.name.toLowerCase().includes(query) ||
+          item.description.toLowerCase().includes(query)
+        );
+      }
+      
+      this.filteredAnalytics = filtered;
     },
     getCategoryDisplayName(category) {
       const cat = this.categoryData.find(c => c.name === category);
