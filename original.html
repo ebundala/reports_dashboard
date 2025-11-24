@@ -208,7 +208,9 @@ createApp({
   },
   methods: {
     getCategoryReports(categoryName) {
-      return this.reports.filter(report => report.category === categoryName);
+      return this.reports
+        .filter(report => report.category === categoryName)
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 }).mount('#app');
