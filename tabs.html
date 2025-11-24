@@ -302,9 +302,9 @@ createApp({
       if (this.searchQuery.trim()) {
         const query = this.searchQuery.toLowerCase();
         filtered = filtered.filter(report => 
-          report.name.toLowerCase().includes(query) ||
+          report.name.toLowerCase().includes(query) /* ||
           report.shortDescription.toLowerCase().includes(query) ||
-          report.longDescription.toLowerCase().includes(query)
+          report.longDescription.toLowerCase().includes(query) */
         );
       }
       

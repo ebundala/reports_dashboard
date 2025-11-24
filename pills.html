@@ -92,7 +92,7 @@
 <div class="left-0 absolute inset-y-0 flex items-center pl-3 pointer-events-none">
 <span class="text-slate-400 material-icons-outlined">search</span>
 </div>
-<input v-model="searchQuery" @input="filterReports" class="bg-white dark:bg-slate-800 py-3 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-700 rounded-lg focus:ring-primary w-full text-slate-900 dark:text-white text-lg placeholder-slate-400" id="search-reports" placeholder="Search reports by title or description..." type="text"/>
+<input v-model="searchQuery" @input="filterReports" class="bg-white dark:bg-slate-800 py-3 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-700 rounded-lg focus:ring-primary w-full text-slate-900 dark:text-white text-lg placeholder-slate-400" id="search-reports" placeholder="Search reports by title..." type="text"/>
 </div>
 </div>
 <div class="flex flex-wrap gap-2 mb-8">
@@ -122,7 +122,7 @@
 <div class="left-0 absolute inset-y-0 flex items-center pl-3 pointer-events-none">
 <span class="text-slate-400 material-icons-outlined">search</span>
 </div>
-<input v-model="analyticsSearchQuery" @input="filterAnalytics" class="bg-white dark:bg-slate-800 py-3 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-700 rounded-lg focus:ring-primary w-full text-slate-900 dark:text-white text-lg placeholder-slate-400" id="search-analytics" placeholder="Search analytics by title or description..." type="text"/>
+<input v-model="analyticsSearchQuery" @input="filterAnalytics" class="bg-white dark:bg-slate-800 py-3 pr-4 pl-10 border border-slate-300 focus:border-primary dark:border-slate-700 rounded-lg focus:ring-primary w-full text-slate-900 dark:text-white text-lg placeholder-slate-400" id="search-analytics" placeholder="Search analytics by title..." type="text"/>
 </div>
 </div>
 <div v-if="filteredAnalytics.length === 0" class="py-12 text-center">
@@ -215,9 +215,9 @@ createApp({
       if (this.searchQuery.trim()) {
         const query = this.searchQuery.toLowerCase();
         filtered = filtered.filter(report => 
-          report.name.toLowerCase().includes(query) ||
+          report.name.toLowerCase().includes(query) /* ||
           report.shortDescription.toLowerCase().includes(query) ||
-          report.longDescription.toLowerCase().includes(query)
+          report.longDescription.toLowerCase().includes(query) */
         );
       }
       
@@ -233,8 +233,8 @@ createApp({
       if (this.analyticsSearchQuery.trim()) {
         const query = this.analyticsSearchQuery.toLowerCase();
         filtered = filtered.filter(item => 
-          item.name.toLowerCase().includes(query) ||
-          item.description.toLowerCase().includes(query)
+          item.name.toLowerCase().includes(query) /* ||
+          item.description.toLowerCase().includes(query) */
         );
       }
       
