@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reports Dashboard - Improved</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: "#eff6ff",
+                            100: "#dbeafe",
+                            200: "#bfdbfe",
+                            300: "#93c5fd",
+                            400: "#60a5fa",
+                            500: "#3b82f6",
+                            600: "#2563eb",
+                            700: "#1d4ed8",
+                        },
+                        surface: {
+                            50: "#f8fafc",
+                            100: "#f1f5f9",
+                            200: "#e2e8f0",
+                            700: "#334155",
+                            800: "#1e293b",
+                            900: "#0f172a",
+                        }
+                    },
+                    fontFamily: {
+                        display: ["DM Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-icons-outlined { font-size: 20px; }
+        
+        /* Custom scrollbar for category tabs */
+        .tabs-scroll::-webkit-scrollbar {
+            height: 0;
+        }
+        
+        /* Fade edges for horizontal scroll */
+        .tabs-container {
+            position: relative;
+        }
+        .tabs-container::before,
+        .tabs-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .tabs-container::before {
+            left: 0;
+            background: linear-gradient(to right, rgb(248 250 252) 0%, transparent 100%);
+        }
+        .tabs-container::after {
+            right: 0;
+            background: linear-gradient(to left, rgb(248 250 252) 0%, transparent 100%);
+        }
+        .tabs-container.scroll-left::before { opacity: 1; }
+        .tabs-container.scroll-right::after { opacity: 1; }
+        
+        /* Segmented control styling */
+        .segmented-control {
+            background: linear-gradient(to bottom, #e2e8f0, #cbd5e1);
+            padding: 4px;
+            border-radius: 12px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .segmented-btn {
+            position: relative;
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            color: #64748b;
+        }
+        .segmented-btn.active {
+            background: white;
+            color: #3b82f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        }
+        .segmented-btn:not(.active):hover {
+            color: #334155;
+        }
+        
+        /* Category pill styling */
+        .category-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+            border: 1.5px solid transparent;
+        }
+        .category-pill.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .category-pill:not(.active) {
+            background: white;
+            color: #64748b;
+            border-color: #e2e8f0;
+        }
+        .category-pill:not(.active):hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        /* Report card improvements */
+        .report-card {
+            position: relative;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .report-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        .report-card .action-btn {
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.2s ease;
+        }
+        .report-card:hover .action-btn {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Category tag colors */
+        .tag-AccountManagement { background: #fef3c7; color: #92400e; }
+        .tag-Billing { background: #dbeafe; color: #1e40af; }
+        .tag-Metering { background: #d1fae5; color: #065f46; }
+        .tag-Payments { background: #ede9fe; color: #5b21b6; }
+        
+        /* Analytics card */
+        .analytics-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+        .analytics-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+        .analytics-preview {
+            height: 140px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .analytics-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(90deg, transparent 50%, rgba(59,130,246,0.1) 50%),
+                linear-gradient(0deg, transparent 50%, rgba(59,130,246,0.05) 50%);
+            background-size: 20px 20px;
+        }
+        
+        /* Quick actions bar */
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            transition: all 0.15s;
+        }
+        .quick-action:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        /* Search scope indicator */
+        .search-scope {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: #eff6ff;
+            color: #3b82f6;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Staggered animation for cards */
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .report-card {
+            animation: fadeSlideIn 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface-50 font-display text-slate-700">
+    <div class="flex flex-col min-h-screen">
+        <!-- Header (unchanged from original) -->
+        <header class="bg-slate-800 shadow-md text-white">
+            <div class="mx-auto px-4 container">
+                <div class="flex justify-between items-center py-3">
+                    <div class="flex items-center space-x-4">
+                        <img alt="Company Logo" class="w-auto h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtPk04WVQiybIrKSZ4ttqcbA9zukydDDfh3FADk9RtouluILlTdQ0Q5B0aP7SnbnJpehoHp7VhTixpfAF2B_eSHGIb0-itwM35qVIZ5oRoEV5I3_NxG-9bUFUEewqo5Bzws_QWuuO3Sxw6Ma-qr7KOud9lq3CONg1Iw-38xZGW-Qdu6cEcEmlZ7-knUZm2P1gMqG0opLOQsaRnYorGDgvXq2P7i8-im7C-MKk0Cgbz1vgsk_jL99hcEY6tcXZ9M24q1HKh0GcvSL0"/>
+                        <nav class="hidden md:flex items-center space-x-2">
+                            <a class="hover:bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Search</a>
+                            <a class="hover:bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Billing</a>
+                            <a class="hover:bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Configuration</a>
+                            <a class="bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Data</a>
+                            <a class="hover:bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Help</a>
+                            <a class="hover:bg-slate-700 px-3 py-2 rounded-md font-medium text-sm" href="#">Support</a>
+                        </nav>
+                    </div>
+                    <div class="text-sm text-right">
+                        <p>City of Cedar Hill</p>
+                        <p class="text-slate-400">Modifying: Mitch Warren</p>
+                    </div>
+                </div>
+                <div class="bg-primary-500">
+                    <nav class="flex items-center space-x-1">
+                        <a class="hover:bg-primary-600 px-4 py-3 font-medium text-white text-sm" href="#">Customer</a>
+                        <a class="hover:bg-primary-600 px-4 py-3 font-medium text-white text-sm" href="#">Parcel</a>
+                        <a class="hover:bg-primary-600 px-4 py-3 font-medium text-white text-sm" href="#">Payment</a>
+                        <a class="hover:bg-primary-600 px-4 py-3 font-medium text-white text-sm" href="#">Multi-Parcel Owners</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main id="app" class="flex-grow mx-auto px-4 py-8 container">
+            
+            <!-- IMPROVEMENT #1: Clear Segmented Control Toggle -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div class="segmented-control inline-flex">
+                    <button 
+                        @click="activeView = 'reports'" 
+                        :class="{ 'active': activeView === 'reports' }"
+                        class="segmented-btn">
+                        <span class="flex items-center gap-2">
+                            <span class="material-icons-outlined">description</span>
+                            Reports
+                        </span>
+                    </button>
+                    <button 
+                        @click="activeView = 'analytics'" 
+                        :class="{ 'active': activeView === 'analytics' }"
+                        class="segmented-btn">
+                        <span class="flex items-center gap-2">
+                            <span class="material-icons-outlined">insights</span>
+                            Analytics
+                            <span class="px-1.5 py-0.5 text-[10px] font-bold bg-primary-500 text-white rounded">NEW</span>
+                        </span>
+                    </button>
+                </div>
+                
+                <!-- Quick Actions (moved from footer) -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <span class="text-xs text-slate-400 mr-2">Quick Actions:</span>
+                    <button class="quick-action">
+                        <span class="material-icons-outlined text-base">person_add</span>
+                        Add Customer
+                    </button>
+                    <button class="quick-action">
+                        <span class="material-icons-outlined text-base">payments</span>
+                        Fast Payment
+                    </button>
+                    <button class="quick-action">
+                        <span class="material-icons-outlined text-base">print</span>
+                        Bill Printing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reports View -->
+            <div v-show="activeView === 'reports'" class="w-full">
+                
+                <!-- IMPROVEMENT #2: Scrollable Category Pills with Overflow Indicators -->
+                <div class="tabs-container mb-6" :class="{ 'scroll-left': tabsScrollLeft, 'scroll-right': tabsScrollRight }">
+                    <div class="tabs-scroll flex items-center gap-2 overflow-x-auto pb-2" ref="tabsContainer" @scroll="checkTabsScroll">
+                        <button 
+                            v-for="cat in categoryOptions" 
+                            :key="cat.id"
+                            @click="activeTab = cat.id; filterReports();"
+                            :class="{ 'active': activeTab === cat.id }"
+                            class="category-pill">
+                            <span class="material-icons-outlined text-base">{{ cat.icon }}</span>
+                            {{ cat.label }}
+                            <span 
+                                class="px-1.5 py-0.5 text-[11px] font-mono rounded"
+                                :class="activeTab === cat.id ? 'bg-white/20' : 'bg-slate-100 text-slate-500'">
+                                {{ cat.count }}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- IMPROVEMENT #5: Search with Scope Indicator -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                    <div class="relative flex-grow max-w-md">
+                        <span class="top-1/2 left-3 absolute text-slate-400 -translate-y-1/2 material-icons-outlined">search</span>
+                        <input 
+                            v-model="searchQuery" 
+                            @input="filterReports" 
+                            class="bg-white py-2.5 pr-4 pl-10 border border-slate-200 focus:border-primary-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-200 w-full text-sm" 
+                            placeholder="Search reports by name..." 
+                            type="text"/>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="search-scope" v-if="activeTab !== 'all-reports'">
+                            <span class="material-icons-outlined text-sm">filter_alt</span>
+                            {{ getCategoryLabel(activeTab) }}
+                            <button @click="activeTab = 'all-reports'; filterReports();" class="hover:bg-primary-200 rounded ml-1">
+                                <span class="material-icons-outlined text-sm">close</span>
+                            </button>
+                        </span>
+                        <span class="text-sm text-slate-500">
+                            {{ filteredReports.length }} report{{ filteredReports.length !== 1 ? 's' : '' }}
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Recently Used Section (new) -->
+                <div v-if="activeTab === 'all-reports' && !searchQuery && recentReports.length > 0" class="mb-8">
+                    <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-2">
+                        <span class="material-icons-outlined text-base">history</span>
+                        Recently Used
+                    </h3>
+                    <div class="flex gap-3 overflow-x-auto pb-2">
+                        <a 
+                            v-for="report in recentReports" 
+                            :key="'recent-' + report.id"
+                            href="#"
+                            class="flex-shrink-0 flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3 hover:border-primary-500 hover:shadow-sm transition-all">
+                            <span class="material-icons-outlined text-primary-500">article</span>
+                            <span class="font-medium text-sm">{{ report.name }}</span>
+                            <span class="material-icons-outlined text-slate-300 text-base">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reports Grid -->
+                <div class="space-y-6">
+                    <!-- IMPROVEMENT #6: Enhanced Empty State -->
+                    <div v-if="filteredReports.length === 0" class="py-16 text-center">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-100 rounded-full mb-4">
+                            <span class="text-slate-400 text-4xl material-icons-outlined">search_off</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-700 mb-2">No reports found</h3>
+                        <p class="text-slate-500 mb-4 max-w-sm mx-auto">
+                            We couldn't find any reports matching "{{ searchQuery }}" 
+                            <span v-if="activeTab !== 'all-reports'">in {{ getCategoryLabel(activeTab) }}</span>
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button 
+                                @click="searchQuery = ''; filterReports();"
+                                class="px-4 py-2 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                                Clear search
+                            </button>
+                            <button 
+                                v-if="activeTab !== 'all-reports'"
+                                @click="activeTab = 'all-reports'; filterReports();"
+                                class="px-4 py-2 text-sm font-medium text-primary-600 hover:bg-primary-50 rounded-lg transition-colors">
+                                Search all reports
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- IMPROVEMENT #3 & #4: Enhanced Report Cards -->
+                    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <a 
+                            v-for="(report, index) in filteredReports" 
+                            :key="report.id" 
+                            :style="{ animationDelay: (index % 12) * 30 + 'ms' }"
+                            class="report-card group" 
+                            href="#">
+                            
+                            <!-- Category Tag (shown in All Reports view) -->
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <span 
+                                    v-if="activeTab === 'all-reports'"
+                                    class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium"
+                                    :class="getCategoryTagClass(report.category)">
+                                    {{ getCategoryLabel(report.category) }}
+                                </span>
+                                <span class="text-[11px] font-mono text-slate-400">#{{ report.id }}</span>
+                            </div>
+                            
+                            <h3 class="font-semibold text-slate-800 mb-1 group-hover:text-primary-600 transition-colors">
+                                {{ report.name }}
+                            </h3>
+                            <p class="flex-grow text-slate-500 text-sm leading-relaxed mb-3">
+                                {{ report.shortDescription }}
+                            </p>
+                            
+                            <!-- Action Button (visible on hover) -->
+                            <div class="flex items-center justify-between mt-auto pt-3 border-t border-slate-100">
+                                <span class="text-xs text-slate-400">Click to configure</span>
+                                <span class="action-btn inline-flex items-center gap-1 text-sm font-medium text-primary-600">
+                                    Run Report
+                                    <span class="material-icons-outlined text-base">play_arrow</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMPROVEMENT: Enhanced Analytics View -->
+            <div v-show="activeView === 'analytics'" class="space-y-8">
+                
+                <!-- Analytics Header -->
+                <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-6 text-white">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-1">Analytics Dashboard</h2>
+                            <p class="text-slate-300">Interactive Power BI reports for deeper insights into your utility operations</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm">
+                            <span class="flex items-center gap-1 text-slate-400">
+                                <span class="material-icons-outlined text-base">update</span>
+                                Last synced: 2 hours ago
+                            </span>
+                            <button class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-medium transition-colors">
+                                Refresh Data
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick KPIs -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <p class="text-slate-400 text-xs uppercase tracking-wide">Active Accounts</p>
+                            <p class="text-2xl font-bold font-mono">12,847</p>
+                            <p class="text-green-400 text-xs flex items-center gap-1 mt-1">
+                                <span class="material-icons-outlined text-sm">trending_up</span>
+                                +3.2% vs last month
+                            </p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <p class="text-slate-400 text-xs uppercase tracking-wide">Monthly Revenue</p>
+                            <p class="text-2xl font-bold font-mono">$847K</p>
+                            <p class="text-green-400 text-xs flex items-center gap-1 mt-1">
+                                <span class="material-icons-outlined text-sm">trending_up</span>
+                                +5.1% vs last month
+                            </p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <p class="text-slate-400 text-xs uppercase tracking-wide">Collection Rate</p>
+                            <p class="text-2xl font-bold font-mono">94.7%</p>
+                            <p class="text-slate-400 text-xs flex items-center gap-1 mt-1">
+                                <span class="material-icons-outlined text-sm">trending_flat</span>
+                                No change
+                            </p>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <p class="text-slate-400 text-xs uppercase tracking-wide">Avg. Consumption</p>
+                            <p class="text-2xl font-bold font-mono">4,521</p>
+                            <p class="text-amber-400 text-xs flex items-center gap-1 mt-1">
+                                <span class="material-icons-outlined text-sm">trending_down</span>
+                                -2.3% vs last month
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analytics Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div 
+                        v-for="item in analyticsItems" 
+                        :key="item.id" 
+                        class="analytics-card cursor-pointer group">
+                        
+                        <!-- Preview Area (simulated dashboard) -->
+                        <div class="analytics-preview relative">
+                            <!-- Simulated chart elements -->
+                            <div class="absolute inset-4 flex items-end gap-1">
+                                <div v-for="n in 12" :key="n" 
+                                    class="flex-1 bg-primary-500/60 rounded-t"
+                                    :style="{ height: (20 + Math.random() * 60) + '%' }">
+                                </div>
+                            </div>
+                            <!-- Hover overlay -->
+                            <div class="absolute inset-0 bg-primary-600/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-semibold flex items-center gap-2">
+                                    <span class="material-icons-outlined">open_in_new</span>
+                                    Open Dashboard
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-10 h-10 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center">
+                                    <span class="material-icons-outlined text-xl">{{ item.icon }}</span>
+                                </span>
+                                <h3 class="font-semibold text-lg text-slate-800">{{ item.name }}</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed">{{ item.description }}</p>
+                            
+                            <!-- Quick stats -->
+                            <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                                <span class="flex items-center gap-1">
+                                    <span class="material-icons-outlined text-sm">bar_chart</span>
+                                    {{ item.chartCount }} charts
+                                </span>
+                                <span class="flex items-center gap-1">
+                                    <span class="material-icons-outlined text-sm">schedule</span>
+                                    Updated daily
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Simplified Footer -->
+        <footer class="bg-white border-t border-slate-200 mt-auto">
+            <div class="mx-auto px-4 py-4 container">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <!-- Status indicators -->
+                    <div class="flex items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span class="text-slate-600">All systems operational</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-slate-500">
+                            <span>Overdue: <strong class="text-slate-700">0</strong></span>
+                            <span>Reminders: <strong class="text-slate-700">0</strong></span>
+                            <span>Open Service: <strong class="text-slate-700">0</strong></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Legal links -->
+                    <div class="text-xs text-slate-400">
+                        © 2024 Your Company · 
+                        <a href="#" class="hover:text-primary-500">Privacy</a> · 
+                        <a href="#" class="hover:text-primary-500">Terms</a> · 
+                        <a href="#" class="hover:text-primary-500">Security</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        const reportsData = {"reports":[{"id":346,"category":"AccountManagement","name":"Permits By Date","shortDescription":"Permits By Date"},{"id":328,"category":"AccountManagement","name":"Totalizer Report","shortDescription":"SCVWD Totalizer Report"},{"id":368,"category":"AccountManagement","name":"Skipped Tax Worksheet","shortDescription":"Customers who should have submitted a tax worksheet but haven't."},{"id":338,"category":"AccountManagement","name":"Service Calls","shortDescription":"Service Calls by Parcel"},{"id":250,"category":"AccountManagement","name":"Past Due Customers","shortDescription":"Customers who are more than the given number of days past due."},{"id":321,"category":"AccountManagement","name":"Billing Types","shortDescription":"Billing Types and their associated accounts"},{"id":381,"category":"AccountManagement","name":"Third Party Print Customers","shortDescription":"Third Party Print Customers"},{"id":419,"category":"AccountManagement","name":"Broadcast Notifications as a Service","shortDescription":"Provides customer list CSV used for Broadcast Notifications"},{"id":358,"category":"AccountManagement","name":"Business License","shortDescription":"Business License"},{"id":416,"category":"AccountManagement","name":"Business License Form","shortDescription":"Business License Form"},{"id":350,"category":"AccountManagement","name":"Business License History","shortDescription":"Business License History"},{"id":359,"category":"AccountManagement","name":"Business License Multi Print","shortDescription":"Allows for two per page printing of business licenses"},{"id":348,"category":"AccountManagement","name":"Contractor Permits","shortDescription":"Complete listing of permits for a given contractor"},{"id":410,"category":"AccountManagement","name":"Late Charges - Shut Off Door Tag Labels","shortDescription":"Shut Off Door Tag Labels"},{"id":460,"category":"AccountManagement","name":"Multi-Parcel Customers","shortDescription":"Shows multi-parcel customers and their attached parcels."},{"id":459,"category":"AccountManagement","name":"Multi-Parcel Owners","shortDescription":"Shows multi-parcel owners and the related customers."},{"id":101,"category":"AccountManagement","name":"Contract Listing","shortDescription":"NRG Contract Listing"},{"id":222,"category":"AccountManagement","name":"Active Customers & Parcels","shortDescription":"A count of active customers and parcels."},{"id":231,"category":"AccountManagement","name":"Budget Billing Anniversaries","shortDescription":"Customers within the specified number of days of their annual budget billing anniversary."},{"id":235,"category":"AccountManagement","name":"Customer Alerts","shortDescription":"A list of all customers with an alert on their account."},{"id":291,"category":"AccountManagement","name":"Customer Open Close","shortDescription":"Returns customers that have been opened or closed."},{"id":361,"category":"AccountManagement","name":"Customers In Waiting Status","shortDescription":"Customers in Waiting Status"},{"id":238,"category":"AccountManagement","name":"Deferred Billing Customers","shortDescription":"A list of customers on a deferred plan."},{"id":255,"category":"AccountManagement","name":"Penalty Exemptions","shortDescription":"Customer accounts with penalty exemptions."},{"id":326,"category":"AccountManagement","name":"Closed Customers","shortDescription":"Customers who have closed an account within the specified time frame."},{"id":325,"category":"AccountManagement","name":"Opened Customers","shortDescription":"Customers who have opened an account within the specified time frame."},{"id":267,"category":"AccountManagement","name":"Deposit Interest","shortDescription":"Deposit Interest"},{"id":268,"category":"AccountManagement","name":"Contact Customer","shortDescription":"Detailed customer Contact listings."},{"id":234,"category":"AccountManagement","name":"Contacts Listing","shortDescription":"Log of customer Contacts."},{"id":391,"category":"AccountManagement","name":"Service Call Field Form","shortDescription":"Service Orders within a chosen date range"},{"id":261,"category":"AccountManagement","name":"Service Calls","shortDescription":"Service calls scheduled to occur within a chosen date range."},{"id":239,"category":"AccountManagement","name":"EDU Multipliers","shortDescription":"Total number of all Equivalent Dwelling Units."},{"id":249,"category":"AccountManagement","name":"Parcel Rates","shortDescription":"Rates assigned to active parcels displayed as multipliers."},{"id":434,"category":"AccountManagement","name":"Parcel Rates with Start/End Dates","shortDescription":"Parcel Rates with Start/End Dates"},{"id":257,"category":"AccountManagement","name":"Rate Counts","shortDescription":"Shows how many parcels have each rate assigned."},{"id":414,"category":"AccountManagement","name":"Seasonal Interruptions","shortDescription":"Seasonal Interruptions"},{"id":264,"category":"AccountManagement","name":"Unused Parcels","shortDescription":"Parcels that do not have an active customer assigned."},{"id":392,"category":"AccountManagement","name":"Payment Plans","shortDescription":"Customer Payment Plan Dates and Amounts"},{"id":102,"category":"AccountManagement","name":"Rate Details","shortDescription":"Details of system rates."},{"id":103,"category":"AccountManagement","name":"User Security Role","shortDescription":"User Security Role"},{"id":121,"category":"Billing&Financials","name":"One Time Invoice Draft","shortDescription":"One Time Invoice Draft"},{"id":452,"category":"Billing&Financials","name":"Rent Manager History","shortDescription":"Rent manager job history"},{"id":176,"category":"Billing&Financials","name":"Customer Balance (AS OF)","shortDescription":"Customer Balance as of date"},{"id":115,"category":"Billing&Financials","name":"General Revenue Interface Billing Type","shortDescription":"General Revenue Interface Billing Type"},{"id":114,"category":"Billing&Financials","name":"General Revenue Interface GL","shortDescription":"General Revenue Interface GL"},{"id":120,"category":"Billing&Financials","name":"Invoice Step Summary","shortDescription":"Invoice Step Summary"},{"id":154,"category":"Billing&Financials","name":"Unbilled Accounts","shortDescription":"Accounts that are unbilled after a given cut-off date."},{"id":334,"category":"Billing&Financials","name":"Lien Balances","shortDescription":"Outstanding lien balances by customer."},{"id":335,"category":"Billing&Financials","name":"Lien Balances Transactions","shortDescription":"All lien balance transactions during the selected period."},{"id":343,"category":"Billing&Financials","name":"Financial Collections","shortDescription":"Financial Collections"},{"id":220,"category":"Billing&Financials","name":"Accounts Receivable","shortDescription":"Current balances for customers."},{"id":221,"category":"Billing&Financials","name":"Accounts Receivable Aging","shortDescription":"Customer balances in date range buckets."},{"id":405,"category":"Billing&Financials","name":"Accounts Receivable Aging by Billing Type","shortDescription":"AR Aging by Billing Type"},{"id":322,"category":"Billing&Financials","name":"Accounts Receivable By Account and Billing Type","shortDescription":"AR By Account and Billing Type"},{"id":324,"category":"Billing&Financials","name":"Accounts Receivable By Account and Billing Type (AS OF)","shortDescription":"AR By Account and Billing Type As Of"},{"id":409,"category":"Billing&Financials","name":"AR by Acct and Billing Type (Posted-to-Accounting)","shortDescription":"AR showing only posted-to-accounting activity"},{"id":227,"category":"Billing&Financials","name":"Balances by Date","shortDescription":"Positive open balances remaining from current balances."},{"id":432,"category":"Billing&Financials","name":"Business & Operations Building Permits","shortDescription":"Building Permit"},{"id":247,"category":"Billing&Financials","name":"Open Invoices by Billing Type (AS OF)","shortDescription":"Open invoices as of a selected date."},{"id":347,"category":"Billing&Financials","name":"Building Permits","shortDescription":"Building Permit"},{"id":265,"category":"Billing&Financials","name":"Write Off","shortDescription":"Write-offs applied to accounts."},{"id":228,"category":"Billing&Financials","name":"Bill Count by ZIP Code","shortDescription":"Count of unposted invoices by zip code."},{"id":229,"category":"Billing&Financials","name":"Bill Register Preview","shortDescription":"Listing of all unposted bills."},{"id":341,"category":"Billing&Financials","name":"Bill Register Preview With Adjustments","shortDescription":"Unposted bills with line item adjustments."},{"id":356,"category":"Billing&Financials","name":"Bill Register Preview With Reading Dates","shortDescription":"Unposted bills with reading dates."},{"id":230,"category":"Billing&Financials","name":"Bill Review","shortDescription":"Individual rate charges billed within a date range."},{"id":345,"category":"Billing&Financials","name":"Current Charges","shortDescription":"Current Charges excluding payments and previous balances."},{"id":289,"category":"Billing&Financials","name":"Final Bills","shortDescription":"Final bills within the given date range."},{"id":266,"category":"Billing&Financials","name":"Invoices","shortDescription":"All bills in a selected date range."},{"id":263,"category":"Billing&Financials","name":"Unbilled Accounts","shortDescription":"Accounts unbilled after a given cut-off date."},{"id":288,"category":"Billing&Financials","name":"Voided Bills","shortDescription":"Voided bills within the chosen date range."},{"id":237,"category":"Billing&Financials","name":"Customer Security Deposits","shortDescription":"Security deposits held for customers."},{"id":236,"category":"Billing&Financials","name":"Customer Security Deposit Transactions","shortDescription":"Security deposits received, returned, applied, and refunded."},{"id":215,"category":"Billing&Financials","name":"Accounting","shortDescription":"Bills and payments posted to accounting."},{"id":226,"category":"Billing&Financials","name":"Adjustments","shortDescription":"Adjustments in a chosen date range."},{"id":211,"category":"Billing&Financials","name":"Directors","shortDescription":"Overview of usage, services billed, and AR."},{"id":240,"category":"Billing&Financials","name":"G/L by Billing Type Summary","shortDescription":"Revenue grouped by billing type."},{"id":241,"category":"Billing&Financials","name":"G/L Transaction Summary","shortDescription":"Revenue grouped by date and billing type."},{"id":242,"category":"Billing&Financials","name":"Journal Entries","shortDescription":"Journal entries for debits and credits."},{"id":271,"category":"Billing&Financials","name":"Monthly Activities","shortDescription":"Overview of usage, services billed, and AR."},{"id":377,"category":"Billing&Financials","name":"Open Deposit Charges","shortDescription":"Open Deposit Charges"},{"id":256,"category":"Billing&Financials","name":"Billed Rate Code Summary","shortDescription":"Summary by rate code of usage and revenue."},{"id":259,"category":"Billing&Financials","name":"Revenue","shortDescription":"All bills from a chosen date range."},{"id":177,"category":"Metering&Consumption","name":"Water Production","shortDescription":"Water Production"},{"id":376,"category":"Metering&Consumption","name":"Meter Reading Consumption","shortDescription":"Metered consumption for a selected date range."},{"id":456,"category":"Metering&Consumption","name":"Meter Re-Reads (Formula)","shortDescription":"Unposted meter reads outside set thresholds."},{"id":166,"category":"Metering&Consumption","name":"Meter Usage","shortDescription":"Meter Usage"},{"id":355,"category":"Metering&Consumption","name":"Routes","shortDescription":"Report for manually recording meter readings."},{"id":314,"category":"Metering&Consumption","name":"Backflow Export","shortDescription":"Backflow Export Report"},{"id":125,"category":"Metering&Consumption","name":"Backflow Devices Test Dates","shortDescription":"Backflow devices test dates."},{"id":390,"category":"Metering&Consumption","name":"Production Breakdown by Date","shortDescription":"Production Breakdown by Date"},{"id":389,"category":"Metering&Consumption","name":"Turnout Consumption Breakdown","shortDescription":"Turnout Consumption"},{"id":387,"category":"Metering&Consumption","name":"Turnout Listing","shortDescription":"Turnout Listing"},{"id":461,"category":"Metering&Consumption","name":"Consumption By Tier","shortDescription":"Billed consumption by rate and tier."},{"id":415,"category":"Metering&Consumption","name":"Electric Consumption Report","shortDescription":"Electric Consumption by rate code."},{"id":106,"category":"Metering&Consumption","name":"Annual Customer Consumption History","shortDescription":"Annual Customer Consumption History"},{"id":107,"category":"Metering&Consumption","name":"Meter Usage (AS OF)","shortDescription":"Meter Usage as of date"},{"id":131,"category":"Metering&Consumption","name":"Water Loss","shortDescription":"Water Loss"},{"id":233,"category":"Metering&Consumption","name":"Consumption","shortDescription":"Billed consumption in a given date range."},{"id":294,"category":"Metering&Consumption","name":"CROA Meter Reading Consumption","shortDescription":"CROA parcel metered consumption."},{"id":272,"category":"Metering&Consumption","name":"Meter Re-Reads","shortDescription":"Unposted meter reads outside thresholds."},{"id":243,"category":"Metering&Consumption","name":"Meter Reading Consumption","shortDescription":"Metered consumption for a date range."},{"id":304,"category":"Metering&Consumption","name":"Meter Reading History","shortDescription":"Reading history of meters."},{"id":129,"category":"Metering&Consumption","name":"Meter Reading Review","shortDescription":"Meter Reading Review"},{"id":367,"category":"Metering&Consumption","name":"Meter Variance","shortDescription":"Meters outside variance thresholds."},{"id":260,"category":"Metering&Consumption","name":"Routes","shortDescription":"Report for manually recording meter readings."},{"id":413,"category":"Metering&Consumption","name":"Routes (3 Decimal Places)","shortDescription":"Meter readings with 3 decimal places."},{"id":396,"category":"Metering&Consumption","name":"Unposted Meter Readings","shortDescription":"Unposted Meter Readings"},{"id":380,"category":"Metering&Consumption","name":"Zero Consumption Meters","shortDescription":"Zero Usage Report"},{"id":117,"category":"Payments","name":"Cash Deposited","shortDescription":"Cash Deposited"},{"id":116,"category":"Payments","name":"Cash Receipts Applied Details","shortDescription":"Cash Receipts Applied Details"},{"id":169,"category":"Payments","name":"Auto Pay Customers","shortDescription":"Auto pay customers list."},{"id":385,"category":"Payments","name":"Payment Allocation Changes","shortDescription":"Payment Allocation Changes"},{"id":183,"category":"Payments","name":"Batch Transaction","shortDescription":"Batch Transaction"},{"id":153,"category":"Payments","name":"Payments by Payment Type","shortDescription":"Payments grouped by Payment Type."},{"id":218,"category":"Payments","name":"Payments Detail","shortDescription":"Payments Detail"},{"id":163,"category":"Payments","name":"Unallocated Payments","shortDescription":"Unallocated Payments"},{"id":232,"category":"Payments","name":"Cash Receipts","shortDescription":"Payments, posted and unposted."},{"id":354,"category":"Payments","name":"IVR Payments By Date","shortDescription":"IVR Payments in a selected date range."},{"id":245,"category":"Payments","name":"Online Payment Deposit Reconciliation","shortDescription":"Online credit card payment batches."},{"id":244,"category":"Payments","name":"Online Payments","shortDescription":"Online payments within a date range."},{"id":248,"category":"Payments","name":"Overpayments","shortDescription":"Payments not applied to a bill."},{"id":251,"category":"Payments","name":"Payment Reconciliation Batches","shortDescription":"Batches of payments in Reconcile Payments."},{"id":352,"category":"Payments","name":"Payment Reconciliation Batches Alt","shortDescription":"Alternate view of Payment Reconciliation Batches"},{"id":124,"category":"Payments","name":"Payments","shortDescription":"Payments"},{"id":252,"category":"Payments","name":"Payments by Billing Type","shortDescription":"Payments grouped by billing type."},{"id":253,"category":"Payments","name":"Payments by Date","shortDescription":"Payments in a selected date range."},{"id":254,"category":"Payments","name":"Payments by Payment Type","shortDescription":"Payments grouped by payment type."},{"id":331,"category":"Payments","name":"Payments by Payment Type With Deposits","shortDescription":"Payments with deposits section."},{"id":258,"category":"Payments","name":"Returned Payments","shortDescription":"Returned payments within a date range."},{"id":203,"category":"Payments","name":"Unapplied Payments","shortDescription":"Payments not applied or applied to unposted bill."}]};
+
+        createApp({
+            data() {
+                return {
+                    activeView: 'reports',
+                    reports: reportsData.reports,
+                    analyticsItems: [
+                        {
+                            id: 1,
+                            name: 'Billing Analytics',
+                            description: 'Revenue trends, invoice analysis, and payment patterns across all customer segments with drill-down capabilities.',
+                            icon: 'assessment',
+                            chartCount: 8
+                        },
+                        {
+                            id: 2,
+                            name: 'Metered Usage',
+                            description: 'Consumption patterns, peak demand analysis, and conservation metrics for all metered services.',
+                            icon: 'show_chart',
+                            chartCount: 6
+                        },
+                        {
+                            id: 3,
+                            name: 'Payment Insights',
+                            description: 'Transaction trends, collection rates, payment method analysis, and outstanding balance tracking.',
+                            icon: 'account_balance',
+                            chartCount: 5
+                        }
+                    ],
+                    activeTab: 'all-reports',
+                    searchQuery: '',
+                    filteredReports: [],
+                    tabsScrollLeft: false,
+                    tabsScrollRight: true,
+                    recentReports: []
+                };
+            },
+            computed: {
+                categoryOptions() {
+                    const counts = {
+                        'all-reports': this.reports.length,
+                        'AccountManagement': this.reports.filter(r => r.category === 'AccountManagement').length,
+                        'Billing&Financials': this.reports.filter(r => r.category === 'Billing&Financials').length,
+                        'Metering&Consumption': this.reports.filter(r => r.category === 'Metering&Consumption').length,
+                        'Payments': this.reports.filter(r => r.category === 'Payments').length
+                    };
+                    return [
+                        { id: 'all-reports', label: 'All Reports', icon: 'view_list', count: counts['all-reports'] },
+                        { id: 'AccountManagement', label: 'Account Management', icon: 'account_circle', count: counts['AccountManagement'] },
+                        { id: 'Billing&Financials', label: 'Billing & Financials', icon: 'receipt_long', count: counts['Billing&Financials'] },
+                        { id: 'Metering&Consumption', label: 'Metering & Consumption', icon: 'speed', count: counts['Metering&Consumption'] },
+                        { id: 'Payments', label: 'Payments', icon: 'payments', count: counts['Payments'] }
+                    ];
+                }
+            },
+            mounted() {
+                this.filterReports();
+                // Simulate recent reports
+                this.recentReports = this.reports.slice(0, 4);
+                this.$nextTick(() => {
+                    this.checkTabsScroll();
+                });
+            },
+            methods: {
+                filterReports() {
+                    let filtered = this.reports;
+                    
+                    if (this.activeTab !== 'all-reports') {
+                        filtered = filtered.filter(report => report.category === this.activeTab);
+                    }
+                    
+                    if (this.searchQuery.trim()) {
+                        const query = this.searchQuery.toLowerCase();
+                        filtered = filtered.filter(report => 
+                            report.name.toLowerCase().includes(query) ||
+                            report.shortDescription.toLowerCase().includes(query)
+                        );
+                    }
+                    
+                    filtered.sort((a, b) => a.name.localeCompare(b.name));
+                    this.filteredReports = filtered;
+                },
+                getCategoryLabel(category) {
+                    const labels = {
+                        'AccountManagement': 'Account Management',
+                        'Billing&Financials': 'Billing & Financials',
+                        'Metering&Consumption': 'Metering & Consumption',
+                        'Payments': 'Payments'
+                    };
+                    return labels[category] || category;
+                },
+                getCategoryTagClass(category) {
+                    const classes = {
+                        'AccountManagement': 'tag-AccountManagement',
+                        'Billing&Financials': 'tag-Billing',
+                        'Metering&Consumption': 'tag-Metering',
+                        'Payments': 'tag-Payments'
+                    };
+                    return classes[category] || '';
+                },
+                checkTabsScroll() {
+                    const container = this.$refs.tabsContainer;
+                    if (container) {
+                        this.tabsScrollLeft = container.scrollLeft > 10;
+                        this.tabsScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 10);
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
