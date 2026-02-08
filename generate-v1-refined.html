@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Accounts Receivable Report - V1 Refined</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        "primary-dark": "#1d4ed8",
+                        secondary: "#1e40af",
+                        accent: "#3b82f6",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        display: ["Manrope", "sans-serif"],
+                        sans: ["Manrope", "sans-serif"],
+                        mono: ["IBM Plex Mono", "monospace"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        /* Stagger animation on load */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: slideUp 0.4s ease-out forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.05s; }
+        .delay-2 { animation-delay: 0.1s; }
+        .delay-3 { animation-delay: 0.15s; }
+        .delay-4 { animation-delay: 0.2s; }
+
+        /* Accordion with smooth height */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .accordion-content.open {
+            grid-template-rows: 1fr;
+        }
+        .accordion-inner {
+            overflow: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* Focus glow */
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+            border-color: #2563eb;
+        }
+
+        /* Pill toggle with spring effect */
+        .pill-option {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+        .pill-option:hover {
+            transform: translateY(-1px);
+        }
+        .pill-option:active {
+            transform: scale(0.96);
+        }
+        .pill-option:has(input:checked) {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        /* Card hover lift */
+        .card-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px -8px rgba(0,0,0,0.12);
+        }
+
+        /* Output card selection */
+        .output-card {
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .output-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.2s ease;
+        }
+        .output-card:has(input:checked)::before {
+            opacity: 1;
+        }
+        .output-card:has(input:checked) {
+            background: white;
+            border-color: transparent;
+        }
+        .dark .output-card:has(input:checked) {
+            background: #1e293b;
+        }
+        .output-card:has(input:checked) .output-icon {
+            transform: scale(1.1);
+        }
+        .output-icon {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Generate button */
+        .btn-generate {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .btn-generate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-generate:hover::before {
+            left: 100%;
+        }
+        .btn-generate:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.5);
+        }
+        .btn-generate:active {
+            transform: scale(0.98);
+        }
+
+        /* Section header icon pulse */
+        .section-icon {
+            position: relative;
+        }
+        .section-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .accordion-header:hover .section-icon::after {
+            opacity: 1;
+        }
+
+        /* Subtle texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.015;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans min-h-screen flex flex-col">
+    <!-- Compact Nav -->
+    <nav class="bg-slate-800 text-white dark:bg-slate-950 border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-11">
+                <div class="flex items-center space-x-5">
+                    <div class="flex items-center space-x-2 font-extrabold text-sm tracking-tight">
+                        <span class="text-primary material-icons-outlined text-xl">grid_view</span>
+                        <span class="text-white">MUNIBILLING</span>
+                    </div>
+                    <div class="hidden md:flex space-x-0.5 text-[11px] font-semibold text-slate-400 uppercase tracking-wide">
+                        <a class="hover:text-white hover:bg-slate-700/50 px-2.5 py-1 rounded transition-all" href="#">Search</a>
+                        <a class="hover:text-white hover:bg-slate-700/50 px-2.5 py-1 rounded transition-all" href="#">Billing</a>
+                        <a class="hover:text-white hover:bg-slate-700/50 px-2.5 py-1 rounded transition-all" href="#">System</a>
+                        <a class="text-white bg-primary/90 px-2.5 py-1 rounded" href="#">Reports</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 text-xs font-medium text-slate-400">
+                    <span class="hidden lg:block font-mono text-[10px] bg-slate-700/50 px-2 py-0.5 rounded">Test Company</span>
+                    <button class="p-1 hover:text-white hover:bg-slate-700/50 rounded transition-all">
+                        <span class="material-icons-outlined text-lg">help_outline</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub-nav -->
+    <div class="bg-gradient-to-r from-primary to-primary-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-0.5 h-8 overflow-x-auto text-[11px] text-white/80 font-semibold">
+                <a class="px-2 py-1 flex items-center hover:bg-white/10 rounded transition-colors" href="#">
+                    <span class="material-icons-outlined text-sm">search</span>
+                </a>
+                <a class="px-2 py-1 hover:bg-white/10 hover:text-white rounded transition-colors" href="#">CUSTOMER</a>
+                <a class="px-2 py-1 hover:bg-white/10 hover:text-white rounded transition-colors" href="#">PARCEL</a>
+                <a class="px-2 py-1 hover:bg-white/10 hover:text-white rounded transition-colors" href="#">PAYMENT</a>
+                <a class="px-2 py-1 hover:bg-white/10 hover:text-white rounded transition-colors" href="#">MULTI-PARCEL</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow py-5 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        <!-- Header -->
+        <header class="mb-5 flex items-center justify-between animate-in">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20">
+                    <span class="material-icons-outlined text-white text-xl">receipt_long</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">Accounts Receivable</h1>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Generate detailed financial reports</p>
+                </div>
+            </div>
+            <button onclick="toggleInfo()" class="lg:hidden text-slate-400 hover:text-primary p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                <span class="material-icons-outlined">info</span>
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <!-- Main Form - Accordion Style -->
+            <div class="lg:col-span-2 space-y-2">
+                <!-- Filter Section -->
+                <div class="animate-in delay-1 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('filter')" class="accordion-header w-full px-4 py-2.5 flex items-center justify-between hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors group">
+                        <span class="flex items-center gap-2.5 text-sm font-bold text-slate-800 dark:text-white">
+                            <span class="section-icon material-icons-outlined text-primary text-lg">filter_alt</span>
+                            Filters
+                        </span>
+                        <span id="filter-icon" class="material-icons-outlined text-slate-400 text-lg transition-transform duration-300 group-hover:text-slate-600">expand_more</span>
+                    </button>
+                    <div id="filter-content" class="accordion-content open">
+                        <div class="accordion-inner px-4 pb-4">
+                            <div class="grid grid-cols-3 gap-3 pt-1">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">Account Type</label>
+                                    <select class="input-focus w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-800/50 text-sm py-2 font-medium focus:ring-0 transition-all">
+                                        <option>All</option>
+                                        <option>Residential</option>
+                                        <option>Commercial</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">Category</label>
+                                    <select class="input-focus w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-800/50 text-sm py-2 font-medium focus:ring-0 transition-all">
+                                        <option>All</option>
+                                        <option>VIP</option>
+                                        <option>Standard</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">As Of Date</label>
+                                    <input type="date" value="2025-12-11" class="input-focus w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/50 dark:bg-slate-800/50 text-sm py-2 font-medium font-mono focus:ring-0 transition-all"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Config Section -->
+                <div class="animate-in delay-2 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('config')" class="accordion-header w-full px-4 py-2.5 flex items-center justify-between hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors group">
+                        <span class="flex items-center gap-2.5 text-sm font-bold text-slate-800 dark:text-white">
+                            <span class="section-icon material-icons-outlined text-primary text-lg">tune</span>
+                            Configuration
+                        </span>
+                        <span id="config-icon" class="material-icons-outlined text-slate-400 text-lg transition-transform duration-300 group-hover:text-slate-600">expand_more</span>
+                    </button>
+                    <div id="config-content" class="accordion-content open">
+                        <div class="accordion-inner px-4 pb-4">
+                            <div class="grid grid-cols-2 gap-5 pt-1">
+                                <!-- Status -->
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Status</label>
+                                    <div class="flex gap-1.5">
+                                        <label class="pill-option px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 cursor-pointer text-slate-600 dark:text-slate-300">
+                                            <input type="radio" name="status" value="all" checked class="sr-only"/>
+                                            All
+                                        </label>
+                                        <label class="pill-option px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 cursor-pointer text-slate-600 dark:text-slate-300">
+                                            <input type="radio" name="status" value="active" class="sr-only"/>
+                                            Active
+                                        </label>
+                                        <label class="pill-option px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 cursor-pointer text-slate-600 dark:text-slate-300">
+                                            <input type="radio" name="status" value="inactive" class="sr-only"/>
+                                            Inactive
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Sort By -->
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Sort By <span class="text-slate-400 font-normal lowercase">(detail only)</span></label>
+                                    <div class="flex gap-1.5">
+                                        <label class="pill-option px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 cursor-pointer text-slate-600 dark:text-slate-300">
+                                            <input type="radio" name="sort" value="account" checked class="sr-only"/>
+                                            Account #
+                                        </label>
+                                        <label class="pill-option px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 cursor-pointer text-slate-600 dark:text-slate-300">
+                                            <input type="radio" name="sort" value="name" class="sr-only"/>
+                                            Name
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="flex items-center mt-4 cursor-pointer group">
+                                <div class="relative">
+                                    <input type="checkbox" class="peer sr-only"/>
+                                    <div class="w-9 h-5 bg-slate-200 dark:bg-slate-700 rounded-full peer-checked:bg-primary transition-colors"></div>
+                                    <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform peer-checked:translate-x-4"></div>
+                                </div>
+                                <span class="ml-2.5 text-xs font-medium text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Include 0 Balance Accounts</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="animate-in delay-3 bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion('output')" class="accordion-header w-full px-4 py-2.5 flex items-center justify-between hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors group">
+                        <span class="flex items-center gap-2.5 text-sm font-bold text-slate-800 dark:text-white">
+                            <span class="section-icon material-icons-outlined text-primary text-lg">output</span>
+                            Output
+                        </span>
+                        <span id="output-icon" class="material-icons-outlined text-slate-400 text-lg transition-transform duration-300 group-hover:text-slate-600">expand_more</span>
+                    </button>
+                    <div id="output-content" class="accordion-content open">
+                        <div class="accordion-inner px-4 pb-4">
+                            <div class="grid grid-cols-2 gap-5 pt-1">
+                                <!-- Report Type -->
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Report Type</label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <label class="output-card cursor-pointer rounded-lg border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 p-2.5 text-center">
+                                            <input type="radio" name="report_type" value="summary" checked class="sr-only"/>
+                                            <span class="output-icon material-icons-outlined text-slate-400 text-xl block mb-0.5">summarize</span>
+                                            <span class="block text-xs font-bold text-slate-700 dark:text-slate-300">Summary</span>
+                                        </label>
+                                        <label class="output-card cursor-pointer rounded-lg border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 p-2.5 text-center">
+                                            <input type="radio" name="report_type" value="detail" class="sr-only"/>
+                                            <span class="output-icon material-icons-outlined text-slate-400 text-xl block mb-0.5">list_alt</span>
+                                            <span class="block text-xs font-bold text-slate-700 dark:text-slate-300">Detail</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Format -->
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">Format</label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <label class="output-card cursor-pointer rounded-lg border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 p-2.5 text-center">
+                                            <input type="radio" name="format" value="pdf" checked class="sr-only"/>
+                                            <span class="output-icon material-icons-outlined text-red-500 text-xl block mb-0.5">picture_as_pdf</span>
+                                            <span class="block text-xs font-bold text-slate-700 dark:text-slate-300">PDF</span>
+                                        </label>
+                                        <label class="output-card cursor-pointer rounded-lg border-2 border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 p-2.5 text-center">
+                                            <input type="radio" name="format" value="excel" class="sr-only"/>
+                                            <span class="output-icon material-icons-outlined text-emerald-500 text-xl block mb-0.5">table_view</span>
+                                            <span class="block text-xs font-bold text-slate-700 dark:text-slate-300">Excel</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="animate-in delay-4 btn-generate w-full inline-flex items-center justify-center px-4 py-3 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-primary to-primary-dark shadow-lg shadow-primary/30 transition-all">
+                    <span class="material-icons-outlined mr-2 text-lg">analytics</span>
+                    Generate Report
+                </button>
+            </div>
+
+            <!-- Sidebar Info Panel -->
+            <div id="info-panel" class="hidden lg:block animate-in delay-4">
+                <div class="card-lift bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden sticky top-4 shadow-sm">
+                    <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 dark:from-blue-900/30 dark:via-indigo-900/20 dark:to-blue-900/30 px-4 py-3 border-b border-blue-100/80 dark:border-blue-800/30">
+                        <h3 class="text-sm font-bold text-blue-900 dark:text-blue-100 flex items-center">
+                            <span class="material-icons-outlined mr-2 text-lg">info</span>
+                            About This Report
+                        </h3>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            The <strong class="text-slate-800 dark:text-white font-bold">Accounts Receivable</strong> report shows current balances for customers.
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-500 dark:text-slate-400">
+                            <li class="flex items-start gap-2">
+                                <span class="material-icons-outlined text-emerald-500 text-sm mt-0.5">check_circle</span>
+                                <span>Historical balances by date</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-icons-outlined text-emerald-500 text-sm mt-0.5">check_circle</span>
+                                <span>Posted & unposted payments</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-icons-outlined text-emerald-500 text-sm mt-0.5">check_circle</span>
+                                <span>Posted bills only</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-icons-outlined text-amber-500 text-sm mt-0.5">info</span>
+                                <span>Excludes deposit charges</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-4 py-3 bg-slate-50/80 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-700">
+                        <a class="text-primary text-xs font-bold hover:text-primary-dark flex items-center group transition-colors" href="#">
+                            View Documentation
+                            <span class="material-icons-outlined text-sm ml-1 group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id + '-content');
+            const icon = document.getElementById(id + '-icon');
+            content.classList.toggle('open');
+            icon.style.transform = content.classList.contains('open') ? 'rotate(0deg)' : 'rotate(-90deg)';
+        }
+
+        function toggleInfo() {
+            const panel = document.getElementById('info-panel');
+            panel.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

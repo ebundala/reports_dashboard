@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Accounts Receivable Report - V2 Refined</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563eb",
+                        "primary-dark": "#1d4ed8",
+                        secondary: "#1e40af",
+                        accent: "#60a5fa",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        display: ["Sora", "sans-serif"],
+                        sans: ["Sora", "sans-serif"],
+                        mono: ["Fira Code", "monospace"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        /* Entrance animations */
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-up {
+            animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .animate-scale {
+            animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Glass morphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+        }
+
+        /* Card elevation on hover */
+        .card-elevate {
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+        }
+        .card-elevate:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+        }
+
+        /* Segment control with animated background */
+        .segment-wrap {
+            position: relative;
+        }
+        .segment-bg {
+            position: absolute;
+            height: calc(100% - 4px);
+            top: 2px;
+            border-radius: 4px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: left 0.25s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dark .segment-bg {
+            background: #334155;
+        }
+
+        /* Choice card with ring effect */
+        .choice-card {
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            transition: box-shadow 0.2s ease;
+        }
+        .choice-card:has(input:checked)::before {
+            box-shadow: 0 0 0 2px #2563eb;
+        }
+        .choice-card:has(input:checked) {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.02) 100%);
+        }
+        .choice-card:has(input:checked) .choice-icon {
+            transform: scale(1.15);
+        }
+        .choice-card:has(input:checked) .choice-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .choice-icon {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .choice-check {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Select styling */
+        .select-custom {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.25em 1.25em;
+            padding-right: 2.5rem;
+        }
+
+        /* Generate bar gradient */
+        .generate-bar {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 1) 50%, rgba(226, 232, 240, 0.5) 100%);
+        }
+        .dark .generate-bar {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        /* Button with shine */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.6s ease;
+        }
+        .btn-shine:hover::before {
+            left: 125%;
+        }
+
+        /* Floating badge */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .float-badge {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+        .tooltip-content {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 8px;
+            width: 280px;
+            padding: 12px 14px;
+            background: #1e293b;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px -8px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.96);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 50;
+        }
+        .tooltip-content::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 12px;
+            width: 12px;
+            height: 12px;
+            background: #1e293b;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+        .tooltip:hover .tooltip-content,
+        .tooltip:focus-within .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Noise texture */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans min-h-screen flex flex-col">
+    <div class="noise-overlay"></div>
+
+    <!-- Unified Nav Bar -->
+    <nav class="bg-slate-800 dark:bg-slate-950 border-b border-slate-700/50 animate-fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-11">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 font-bold text-sm text-white">
+                        <span class="text-primary material-icons-outlined text-lg">grid_view</span>
+                        <span class="tracking-tight">MUNIBILLING</span>
+                    </div>
+                    <div class="h-4 w-px bg-slate-600/50"></div>
+                    <div class="hidden md:flex items-center text-[11px] font-semibold uppercase tracking-wide">
+                        <a class="text-slate-400 hover:text-white px-2.5 py-1 rounded transition-colors" href="#">Search</a>
+                        <a class="text-slate-400 hover:text-white px-2.5 py-1 rounded transition-colors" href="#">Billing</a>
+                        <a class="text-slate-400 hover:text-white px-2.5 py-1 rounded transition-colors" href="#">System</a>
+                        <a class="text-white bg-primary px-2.5 py-1 rounded" href="#">Reports</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 text-xs text-slate-400">
+                    <span class="hidden lg:block font-mono text-[10px] bg-slate-700/50 px-2 py-0.5 rounded">Test Company</span>
+                    <button class="p-1 hover:text-white hover:bg-slate-700/50 rounded transition-all">
+                        <span class="material-icons-outlined text-base">dark_mode</span>
+                    </button>
+                    <button class="p-1 hover:text-white hover:bg-slate-700/50 rounded transition-all">
+                        <span class="material-icons-outlined text-base">help_outline</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200/80 dark:border-slate-700/50 animate-fade-up delay-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-9">
+                <div class="flex items-center space-x-2 text-[11px] font-medium">
+                    <a href="#" class="text-slate-400 hover:text-primary transition-colors">Reports</a>
+                    <span class="material-icons-outlined text-slate-300 dark:text-slate-600 text-xs">chevron_right</span>
+                    <span class="text-slate-700 dark:text-slate-200">Accounts Receivable</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="text-[11px] text-slate-500 hover:text-primary flex items-center gap-1 font-medium transition-colors">
+                        <span class="material-icons-outlined text-sm">bookmark_border</span>
+                        Save Preset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow py-5 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        <!-- Header -->
+        <div class="flex items-start justify-between mb-5 animate-fade-up delay-200">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-accent flex items-center justify-center shadow-lg shadow-primary/25 float-badge">
+                    <span class="material-icons-outlined text-white text-xl">receipt_long</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Accounts Receivable Report</h1>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Configure and generate your financial report</p>
+                </div>
+            </div>
+            <div class="tooltip">
+                <button class="flex items-center gap-1.5 text-[11px] text-slate-500 hover:text-primary bg-slate-100/80 dark:bg-slate-800/80 px-2.5 py-1.5 rounded-lg font-semibold transition-colors">
+                    <span class="material-icons-outlined text-sm">info</span>
+                    Info
+                </button>
+                <div class="tooltip-content text-white">
+                    <p class="text-xs leading-relaxed mb-3">
+                        Shows current balances for customers. Includes posted & unposted payments; posted bills only.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 bg-slate-700 rounded text-[10px] font-medium">Historical dates</span>
+                        <span class="px-2 py-0.5 bg-slate-700 rounded text-[10px] font-medium">Posted bills</span>
+                        <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px] font-medium">No deposits</span>
+                    </div>
+                    <a href="#" class="mt-3 block text-xs text-primary font-semibold hover:text-accent transition-colors">View documentation →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <!-- Filter Card -->
+            <div class="animate-scale delay-200 glass-card card-elevate rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-4 shadow-sm">
+                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-primary text-sm">filter_alt</span>
+                    </span>
+                    Filters
+                </h2>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Account Type</label>
+                        <select class="select-custom w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/80 dark:bg-slate-800/80 text-sm py-2 font-medium focus:border-primary focus:ring-1 focus:ring-primary">
+                            <option>All Types</option>
+                            <option>Residential</option>
+                            <option>Commercial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Category</label>
+                        <select class="select-custom w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/80 dark:bg-slate-800/80 text-sm py-2 font-medium focus:border-primary focus:ring-1 focus:ring-primary">
+                            <option>All Categories</option>
+                            <option>VIP</option>
+                            <option>Standard</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">As Of Date</label>
+                        <input type="date" value="2025-12-11" class="w-full rounded-lg border-slate-200 dark:border-slate-600 bg-slate-50/80 dark:bg-slate-800/80 text-sm py-2 font-mono font-medium focus:border-primary focus:ring-1 focus:ring-primary"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration Card -->
+            <div class="animate-scale delay-300 glass-card card-elevate rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-4 shadow-sm">
+                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-primary text-sm">tune</span>
+                    </span>
+                    Options
+                </h2>
+                <div class="space-y-3">
+                    <!-- Status Segment -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Status</label>
+                        <div class="segment-wrap flex bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5">
+                            <label class="flex-1 text-center z-10">
+                                <input type="radio" name="status" value="all" checked class="sr-only peer"/>
+                                <span class="relative block py-1.5 text-[11px] font-semibold rounded-md cursor-pointer text-slate-500 peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm transition-all">All</span>
+                            </label>
+                            <label class="flex-1 text-center z-10">
+                                <input type="radio" name="status" value="active" class="sr-only peer"/>
+                                <span class="relative block py-1.5 text-[11px] font-semibold rounded-md cursor-pointer text-slate-500 peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm transition-all">Active</span>
+                            </label>
+                            <label class="flex-1 text-center z-10">
+                                <input type="radio" name="status" value="inactive" class="sr-only peer"/>
+                                <span class="relative block py-1.5 text-[11px] font-semibold rounded-md cursor-pointer text-slate-500 peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm transition-all">Inactive</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Sort Segment -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Sort By</label>
+                        <div class="segment-wrap flex bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5">
+                            <label class="flex-1 text-center z-10">
+                                <input type="radio" name="sort" value="account" checked class="sr-only peer"/>
+                                <span class="relative block py-1.5 text-[11px] font-semibold rounded-md cursor-pointer text-slate-500 peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm transition-all">Account #</span>
+                            </label>
+                            <label class="flex-1 text-center z-10">
+                                <input type="radio" name="sort" value="name" class="sr-only peer"/>
+                                <span class="relative block py-1.5 text-[11px] font-semibold rounded-md cursor-pointer text-slate-500 peer-checked:text-slate-900 dark:peer-checked:text-white peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm transition-all">Name</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Toggle -->
+                    <label class="flex items-center cursor-pointer group pt-1">
+                        <div class="relative">
+                            <input type="checkbox" class="peer sr-only"/>
+                            <div class="w-9 h-5 bg-slate-200 dark:bg-slate-700 rounded-full peer-checked:bg-primary transition-colors"></div>
+                            <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-4"></div>
+                        </div>
+                        <span class="ml-2.5 text-[11px] font-medium text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-white transition-colors">Include 0 Balance</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Output Card -->
+            <div class="animate-scale delay-400 glass-card card-elevate rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-4 shadow-sm">
+                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <span class="material-icons-outlined text-primary text-sm">output</span>
+                    </span>
+                    Output
+                </h2>
+                <div class="space-y-3">
+                    <!-- Report Type -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Type</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="choice-card cursor-pointer rounded-xl border border-slate-200 dark:border-slate-600 bg-white/80 dark:bg-slate-800/80 p-2.5 text-center">
+                                <input type="radio" name="report_type" value="summary" checked class="sr-only"/>
+                                <span class="choice-icon material-icons-outlined text-slate-400 text-lg block">summarize</span>
+                                <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Summary</span>
+                                <span class="choice-check absolute top-1 right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="material-icons-outlined text-white text-xs">check</span>
+                                </span>
+                            </label>
+                            <label class="choice-card cursor-pointer rounded-xl border border-slate-200 dark:border-slate-600 bg-white/80 dark:bg-slate-800/80 p-2.5 text-center">
+                                <input type="radio" name="report_type" value="detail" class="sr-only"/>
+                                <span class="choice-icon material-icons-outlined text-slate-400 text-lg block">list_alt</span>
+                                <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Detail</span>
+                                <span class="choice-check absolute top-1 right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="material-icons-outlined text-white text-xs">check</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Format -->
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Format</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="choice-card cursor-pointer rounded-xl border border-slate-200 dark:border-slate-600 bg-white/80 dark:bg-slate-800/80 p-2.5 text-center">
+                                <input type="radio" name="format" value="pdf" checked class="sr-only"/>
+                                <span class="choice-icon material-icons-outlined text-red-500 text-lg block">picture_as_pdf</span>
+                                <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">PDF</span>
+                                <span class="choice-check absolute top-1 right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="material-icons-outlined text-white text-xs">check</span>
+                                </span>
+                            </label>
+                            <label class="choice-card cursor-pointer rounded-xl border border-slate-200 dark:border-slate-600 bg-white/80 dark:bg-slate-800/80 p-2.5 text-center">
+                                <input type="radio" name="format" value="excel" class="sr-only"/>
+                                <span class="choice-icon material-icons-outlined text-emerald-500 text-lg block">table_view</span>
+                                <span class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">Excel</span>
+                                <span class="choice-check absolute top-1 right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="material-icons-outlined text-white text-xs">check</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Action Bar -->
+        <div class="animate-fade-up delay-400 generate-bar flex items-center justify-between rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-4 shadow-sm">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                    <span class="material-icons-outlined text-primary text-2xl">analytics</span>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-slate-800 dark:text-white">Ready to Generate</p>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium font-mono">Summary • PDF • All accounts</p>
+                </div>
+            </div>
+            <button class="btn-shine inline-flex items-center px-6 py-2.5 text-sm font-bold rounded-xl text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-secondary shadow-lg shadow-primary/30 transition-all hover:shadow-primary/40 hover:-translate-y-0.5 active:scale-[0.98]">
+                <span class="material-icons-outlined mr-2 text-lg">play_arrow</span>
+                Generate
+            </button>
+        </div>
+
+        <!-- Quick Info Footer -->
+        <div class="mt-5 flex items-center justify-center gap-6 text-[11px] text-slate-400 font-medium animate-fade-up delay-400">
+            <span class="flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                    <span class="material-icons-outlined text-emerald-500 text-xs">check</span>
+                </span>
+                Historical dates
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                    <span class="material-icons-outlined text-emerald-500 text-xs">check</span>
+                </span>
+                Posted & unposted
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                    <span class="material-icons-outlined text-amber-500 text-xs">remove</span>
+                </span>
+                Excludes deposits
+            </span>
+        </div>
+    </main>
+</body>
+</html>
